@@ -1,0 +1,38 @@
+
+p
+{
+	color: blue;
+}
+
+.premier_p
+{
+	color: blue;
+}
+
+#deuxieme_p
+{
+	color: red;
+}
+
+h1
+{
+	font-size: 40px;
+	font-style: italic;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align: center;
+	background-color: red;
+	color: white;
+	margin : 40px;
+	padding: 10px;
+}
+
+table
+{
+	border-collapse: collapse;
+}
+
+td, th
+{
+	border: 2px red solid;
+}
