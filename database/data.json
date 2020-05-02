@@ -1,0 +1,20 @@
+{
+  doits:[
+    {
+      name:'Jsx6',
+      color:'#ff00ff',
+      tasks:[
+        {title:'Variable', completed:false},
+        {title:'Function', completed:true}
+      ]
+    },
+    {
+      name:'Jave E',
+      color:'#dd00FF',
+      tasks:[
+        {title:'web dom', completed:true},
+        {title:'management', completed:false}
+      ]
+    }
+  ]
+}
