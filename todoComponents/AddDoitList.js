@@ -1,5 +1,4 @@
 import React from 'react'
-import  {connect} from 'react-redux'
 import {View, Text, TextInput, Dimensions, TouchableWithoutFeedback,
   KeyboardAvoidingView, TouchableOpacity, StyleSheet, Keyboard} from 'react-native'
 import {AntDesign} from '@expo/vector-icons'
@@ -7,7 +6,7 @@ import {AntDesign} from '@expo/vector-icons'
 import doitdata from '../doitData/data'
 
 //Add doit list screen class
-class AddDoitList extends React.Component{
+export default class AddDoitList extends React.Component{
   //DoitList constructor
   constructor(props){
     super(props);
@@ -37,25 +36,21 @@ class AddDoitList extends React.Component{
     if(!exists){
 
       //condition of the name is not empty
-      // if(name.length != 0){
-      //   //add the name into the data
-      //   const action = {
-      //     type:'ADD_DOIT',
-      //     value:{name:name, doits:[]}
-      //   }
-      //   this.props.dispatch(action)
-      //
-      //   // clasing of the Doit list modal
-      //   this.props.closeModal();
-      // }
       if(name.length != 0){
         //add the name into the data
-        this.props.database.push({
-          name,
-          tasks:[]
-        })
+        // this.props.database.push({
+        //   name,
+        //   tasks:[]
+        // })
+        const action = {
+           type:'ADD_NEW_DOIT',
+            value:{name:name, tasks:[]}
+          }
+        this.props.dispatch(action)
         //clasing of the Doit list modal
-        this.props.closeModal();}
+        this.props.closeModal();
+
+      }
     }
     else{
       this.setState({error:'Name alrady use'})
@@ -100,18 +95,6 @@ class AddDoitList extends React.Component{
   }
 }
 
-const mapDispatchToProps = (dispatch) =>  {
-  return {
-    dispatch: (action) => { dispatch(action)}
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    doits:state.doits
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(AddDoitList)
 //set of the styles with StyleSheet
 const styles = StyleSheet.create({
   container:{

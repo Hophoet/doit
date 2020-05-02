@@ -1,5 +1,4 @@
 import React from 'react'
-import {connect } from 'react-redux'
 import {View, StyleSheet, Text, TouchableOpacity, Modal, Dimensions} from 'react-native'
 import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 import AddDoitItem from './AddDoitItem'
@@ -8,43 +7,22 @@ import doitdata from '../doitData/data'
 
 
 //DoitList screen class
-class DoitList extends React.Component{
+export default class DoitList extends React.Component{
   constructor(props){
     super(props);
-    this.database = this.props.database
   }
   //set of the state of the modal state
   state = {
     addDoitItemVisible:false,
-    newTask:''
   }
   //the Doit item modal close and open method
   closeItem = () => {
     this.setState({addDoitItemVisible:!this.state.addDoitItemVisible})
   }
-   refresh = () => {
-    this.setState({newTask:''})
-  }
 
 
   //function to delete doit
   deleteDoit(name){
-    try {
-      const doit = this.database.filter(doit=>doit.name==name)[0];
-      const doitIndex = this.database.indexOf(doit)
-      //this.props.closeItem()
-      //console.log(this.props.doits.length);
-      this.database.splice(doitIndex, 1)
-      this.props.refresh(doitIndex)
-      //doitdata.pop();
-      //console.log(this.props.doits.length);
-      //console.log(this.props.doits);
-      //console.log(doitIndex);
-    } catch (e) {
-      console.error(e)
-    } finally {
-
-    }
 
 
   }
@@ -64,7 +42,7 @@ class DoitList extends React.Component{
         styleType='slide'
         visible={this.state.addDoitItemVisible}
         >
-        <AddDoitItem database={this.database} name={doit.name} tasks={doit.tasks} closeItem = {() => this.closeItem()}/>
+        <AddDoitItem dispatch={this.props.dispatch} doits={this.props.doits} name={doit.name} tasks={doit.tasks} closeItem = {() => this.closeItem()}/>
       </Modal>
 
       <View style={styles.titleContainer}>
@@ -88,18 +66,6 @@ class DoitList extends React.Component{
     </TouchableOpacity>
   );}
 }
-
-const mapStateToProps = (state) => {
-  return {
-    doits:state.doits
-  }
-}
-const mapDispatchToProps  = (state) => {
-  return {
-    dispatch: (action ) => { dispatch(action)}
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(DoitList)
 
 
 //set of the styles with StyleSheet

@@ -7,33 +7,19 @@ import doitData from '../doitData/data';
 export default class DoitItem extends React.Component{
     constructor(props){
       super(props)
-      this.database = require('../database/data').doits
     }
-    state = {
-      toggleTask:''
-    }
+
 
   //toogleTask method to valid the task
   toggleTask(title){
-    //doit = doitdata.filter(doit => doit.name==this.props.name)[0];
-    //index = doitdata.indexOf(doit)
-    //doitdata[index]['doits']
-    let doit, doitIndex, item, itemIndex;
-    doit = this.database.filter(doit => doit.name == this.props.parentComponent.props.name)[0];
-    doitIndex = this.database.indexOf(doit);
-    item = this.database[doitIndex]['tasks'].filter(item => item.title === title)[0];
-    itemIndex = this.database[doitIndex]['tasks'].indexOf(item);
-    this.database[doitIndex]['tasks'][itemIndex].completed = !this.database[doitIndex]['tasks'][itemIndex].completed
-    //console.log(doitData[doitIndex]['doits'][itemIndex].completed);
-    this.props.parentComponent.refreshComponent();
-
-
-
+    //building of the toogle task reduce action
+    let action = {type:'TOOGLE_ONE_TASK', value:{taskTitle:title, doitName:this.props.doitName} }
+    //excecution of the action
+    this.props.dispatch(action)
  }
   //DoitItem components render method
   render(){
     const task = this.props.task;
-
     return(
       <View style={styles.itemContainer}>
         <TouchableOpacity onPress={()=>{ this.toggleTask(task.title)}}>

@@ -40,7 +40,6 @@ export default class Enter extends React.Component{
         <View style={styles.design}/>
 
         <Animated.View style={[styles.main, {top: this.state.yIcon }]}>
-          <Entypo style={[styles.clockIcon]} name='list' size={70} color='#1FA9FF'/>
           <View style={styles.textContainer}>
             <Text style={styles.firstText}>Doit</Text>
             <Text>Just do it </Text>

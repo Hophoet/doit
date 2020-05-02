@@ -1,5 +1,4 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import {View, Text, TextInput, Dimensions, KeyboardAvoidingView, Platform,
         TouchableOpacity, StyleSheet, Keyboard, TouchableWithoutFeedback,
         FlatList, Animated} from 'react-native'
@@ -9,7 +8,7 @@ import {AntDesign, Ionicons} from '@expo/vector-icons'
 import DoitItem from './DoitItem'
 
 //add doit item class
-class AddDoitItem extends React.Component{
+export default class AddDoitItem extends React.Component{
   //Constructor of the AddDoitList
   constructor(props){
     super(props);
@@ -58,20 +57,18 @@ class AddDoitItem extends React.Component{
     }
     //adding condition
     if(!exists){
-      //adding of the item after the condition
-      // let doitIndex = this.props.doits.findIndex(doit => doit.name === this.props.name)
-      // const action = {type:'ADD_TASK', value:{ doitIndex:doitIndex, taskTitle:this.state.title}}
-      // this.props.dispatch(action)
-      // this.error = '';
-      tasks.push(
-        {
-          title:title,
-          completed:false
-        }
-      );
+      //get of the current doit index
+      let doitIndex = this.props.doits.findIndex(doit => doit.name === this.props.name)
+      //building of the task add action
+      const action = {type:'ADD_NEW_TASK', value:{ doitName:this.props.name, taskTitle:this.state.title}}
+      //execuction of the action with the dispatch method
+      this.props.dispatch(action)
+      //set of the error message to empty
       this.error = ''
     }
+    //error condition
     else{
+      //set of the error message
       this.error = 'Name error';
 
     }
@@ -87,22 +84,12 @@ class AddDoitItem extends React.Component{
   }
   //function to delete doit
   deleteDoit(name){
-    const doit = doitdata.filter(doit=>doit.name==name)[0];
-    const doitIndex = doitdata.indexOf(doit)
-    this.props.closeItem()
-    //console.log(this.props.doits.length);
-    this.props.doits.splice(doitIndex, 1);
 
-    //doitdata.pop();
-    //console.log(this.props.doits.length);
-    //console.log(this.props.doits);
-    //console.log(doitIndex);
 
   }
 
   //Render component method
   render(){
-
     const tasks = this.props.tasks;
     const total_number  = tasks.length;
     const dones_number = tasks.filter(task=>task.completed).length;
@@ -140,7 +127,7 @@ class AddDoitItem extends React.Component{
                     keyExtractor={item => item.title}
                     horizontal={false}
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({item, index}) => <DoitItem parentComponent={this}   task={item}/>}
+                    renderItem={({item, index}) => <DoitItem dispatch={this.props.dispatch} doitName={this.props.name} task={item}/>}
                       />
                 </View>
                 <View style={styles.form}>
@@ -163,18 +150,7 @@ class AddDoitItem extends React.Component{
   }
 }
 
-const mapDispatchToProps = (dispatch) =>  {
-  return {
-    dispatch: (action) => { dispatch(action)}
-  }
-}
 
-const mapStateToProps = (state) => {
-  return {
-    doits:state.doits
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(AddDoitItem)
 //set of the style properties with StyleSheet
 const styles = StyleSheet.create({
   container:{
