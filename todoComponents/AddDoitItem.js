@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {View, Text, TextInput, Dimensions, KeyboardAvoidingView, Platform,
         TouchableOpacity, StyleSheet, Keyboard, TouchableWithoutFeedback,
         FlatList, Animated} from 'react-native'
@@ -8,14 +9,17 @@ import {AntDesign, Ionicons} from '@expo/vector-icons'
 import DoitItem from './DoitItem'
 
 //add doit item class
-export default class AddDoitItem extends React.Component{
+class AddDoitItem extends React.Component{
   //Constructor of the AddDoitList
   constructor(props){
     super(props);
+    //screen Dimensions
+    this.width = Dimensions.get('window').width,
+    this.height = Dimensions.get('window').height,
     //item title
-    this.title = '';
     this.error = '';
     this.state = {
+      title:'',
       refresh: '',
       toolsPosition: new Animated.Value(0)
     }
@@ -26,9 +30,9 @@ export default class AddDoitItem extends React.Component{
     Animated.spring(
       this.state.toolsPosition,
       {
-        toValue:Dimensions.get('window').width/3,
-        speed:6,
-        bounciness:20
+        toValue:this.width/3,
+        speed:1,
+        bounciness:10
       }
     ).start()
 
@@ -41,12 +45,13 @@ export default class AddDoitItem extends React.Component{
   //method, that add the item to the DoitList
   addItem =  ()=>{
     //get of the item title
-    const title = this.title;
+    const title = this.state.title.trim().toLowerCase();
+    this.setState({title:''})
     const items = this.props.items;
     let exists = false;
     //condition to get of the add title is alraidy exist
     for(let item of this.props.items){
-      if(item.title === this.title){
+      if(item.title === this.state.title){
         exists = true;
         break;
       }
@@ -54,23 +59,24 @@ export default class AddDoitItem extends React.Component{
     //adding condition
     if(!exists){
       //adding of the item after the condition
+      // let doitIndex = this.props.doits.findIndex(doit => doit.name === this.props.name)
+      // const action = {type:'ADD_TASK', value:{ doitIndex:doitIndex, taskTitle:this.state.title}}
+      // this.props.dispatch(action)
+      // this.error = '';
       this.props.items.push(
         {
           title:title,
           completed:false
         }
       );
-      this.error = '';
+      this.error = ''
     }
     else{
       this.error = 'Name error';
 
     }
 
-
-
-    this.refreshComponent();
-    Keyboard.dismiss();
+    //Keyboard.dismiss();
   }
   //function to display the all done icon
   doneAll(){
@@ -82,87 +88,97 @@ export default class AddDoitItem extends React.Component{
   //function to delete doit
   deleteDoit(name){
     const doit = doitdata.filter(doit=>doit.name==name)[0];
-    const doitIndex = doitdata.indexOf(doit);
-    console.log(doitIndex);
-    this.props.closeItem();
+    const doitIndex = doitdata.indexOf(doit)
+    this.props.closeItem()
+    //console.log(this.props.doits.length);
+    this.props.doits.splice(doitIndex, 1);
+
+    //doitdata.pop();
+    //console.log(this.props.doits.length);
+    //console.log(this.props.doits);
+    //console.log(doitIndex);
+
   }
 
   //Render component method
   render(){
+
     const items = this.props.items;
     const total_number  = items.length;
     const dones_number = items.filter(item=>item.completed).length;
     return(
+            <View style={styles.container} >
 
-  <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
-        <View  style={styles.container}>
-          <View style={styles.design}>
-            <TouchableOpacity
-              style={styles.closeContainer}
-              onPress={ this.props.closeItem}
-              >
-              <AntDesign name='close' color='white' size={30}/>
-            </TouchableOpacity>
-          </View>
+                <View style={styles.design}>
+                  <TouchableOpacity
+                    style={styles.closeContainer}
+                    onPress={ this.props.closeItem}
+                    >
+                    <AntDesign name='close' color='white' size={30}/>
+                  </TouchableOpacity>
+                </View>
 
-          <View style={styles.doitContainer} >
+                <View style={styles.doitContainer} >
+                  <Animated.View style={[styles.toolsContainer, {left:this.state.toolsPosition}]}>
+                    <View style={{flexDirection:'row', alignItems:'center'}}>
+                      <View style={{marginHorizontal:10}}>
+                        <Text numberOfLines={3}  style={styles.itemTitle}>{this.props.name} </Text>
+                        <Text style={styles.doitInfos}> {dones_number} of {total_number} tasks </Text>
 
+                      </View>
+                    </View>
 
-            <Animated.View style={[styles.toolsContainer, {left:this.state.toolsPosition}]}>
-            <View style={{flexDirection:'row', alignItems:'center'}}>
-              {this.doneAll()}
-              <View style={{marginHorizontal:10}}>
-                <Text numberOfLines={3}  style={styles.itemTitle}>{this.props.name} </Text>
-                <Text style={styles.doitInfos}> {dones_number} of {total_number} taks </Text>
-
-              </View>
+                    <Text style={{color:'gray', marginLeft:5}}></Text>
+                  </Animated.View>
+                  <Text style={{color:'red'}}>
+                  {this.error && this.error}
+                  </Text>
+                </View>
+                <View style={styles.itemsContainer}>
+                    <FlatList
+                    data={items}
+                    keyExtractor={item => item.title}
+                    horizontal={false}
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={({item, index}) => <DoitItem parentComponent={this}   item={item}/>}
+                      />
+                </View>
+                <View style={styles.form}>
+                  <TextInput
+                    placeholder='Task name'
+                    onChangeText={(text)=>{this.setState({title:text})  }}
+                    onSubmitEditing={this.addItem}
+                    value={this.state.title}
+                    style={styles.textinput}/>
+                  <TouchableOpacity
+                    style={styles.buttonContainer}
+                    onPress={this.addItem}
+                    >
+                    <Ionicons name='ios-add' size={40} color='white'/>
+                  </TouchableOpacity>
+                </View>
             </View>
-              <TouchableOpacity style={{marginLeft:20}} onPress={()=>{ this.deleteDoit(this.props.name)}}>
-                <Ionicons name='ios-trash' size={40} color='red'/>
-              </TouchableOpacity>
-              <Text style={{color:'gray', marginLeft:5}}></Text>
-            </Animated.View>
-            <Text style={{color:'red'}}>
-            {this.error && this.error}
-            </Text>
-          </View>
-
-          <View style={styles.itemsContainer}>
-              <FlatList
-              data={items}
-              keyExtractor={item => item.title}
-              horizontal={false}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({item, index}) => <DoitItem parentComponent={this}   item={item}/>}
-                />
-          </View>
-
-          <View style={styles.form}>
-            <TextInput
-              placeholder='Item name'
-              onChangeText={(text)=>{this.title = text.trim().toLowerCase() }}
-              onSubmitEditing={this.addItem}
-              style={styles.textinput}/>
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={this.addItem}
-              >
-              <AntDesign  size={30} name='plus' color='white'/>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </TouchableWithoutFeedback>
-
 
     )
   }
 }
 
+const mapDispatchToProps = (dispatch) =>  {
+  return {
+    dispatch: (action) => { dispatch(action)}
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    doits:state.doits
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddDoitItem)
 //set of the style properties with StyleSheet
 const styles = StyleSheet.create({
   container:{
-    flex:1,
-
+    flex:1
   },
   closeContainer:{
     alignSelf:'center',
@@ -170,8 +186,7 @@ const styles = StyleSheet.create({
   },
   form:{
     flexDirection:'row',
-    justifyContent:'center',
-    alignItems:'center',
+    paddingVertical:20,
 
   },
   title:{
@@ -179,48 +194,34 @@ const styles = StyleSheet.create({
     alignSelf:'center'
   },
   textinput:{
-    borderColor:'#1FA9FF',
-    borderWidth:0,
-    height:60,
+    marginLeft:10,
     borderRadius:3,
     backgroundColor:'white',
-    elevation:10,
-    flex:6,
-    marginHorizontal:10,
-    marginVertical:10,
-    paddingHorizontal:10
+    elevation:20,
+    height:50,
+    paddingHorizontal:10,
+    width:Dimensions.get('window').width - Dimensions.get('window').width/5
   },
   buttonContainer:{
+    width:Dimensions.get('window').width/5,
     justifyContent:'center',
     alignItems:'center',
-    height:60,
-    flex:2,
-
-    alignSelf:'center',
-    borderRadius:4
-
   },
   buttonText:{
     color:'#1FA9FF',
   },
   design:{
     backgroundColor:'#1FA9FF',
-
-    height:800,
-    width:100,
+    height:Dimensions.get('window').height,
+    width:Dimensions.get('window').width/5,
     position:'absolute',
-    right:-10,
-    top:-10,
-    alignItems:'center'
-  },
-  itemContainer:{
-    flex:1,
-
+    right:0,
+    top:0,
+    alignItems:'center',
   },
   itemTitle:{
-    fontSize:24,
+    fontSize:20,
     fontWeight:'bold',
-    marginRight:15
   },
   doitInfos:{
     color:'gray',
@@ -231,9 +232,9 @@ const styles = StyleSheet.create({
 
   },
   itemsContainer:{
-    flex:1,
     marginLeft: Dimensions.get('window').width/6,
-    marginTop:40
+    marginTop:20,
+    flex:1
   },
   toolsContainer:{
     ...Platform.select({
@@ -245,7 +246,8 @@ const styles = StyleSheet.create({
     elevation:20,
     borderBottomLeftRadius:10,
     borderTopLeftRadius:10,
-    width:Dimensions.get('window').width/2 + Dimensions.get('window').width/3
+    width:Dimensions.get('window').width,
+    paddingRight:Dimensions.get('window').width/3,
 
 
   }

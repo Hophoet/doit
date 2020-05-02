@@ -1,76 +1,123 @@
 import React from 'react'
-import {View, StyleSheet, Text, TouchableOpacity, Modal} from 'react-native'
-import {AntDesign, Ionicons} from '@expo/vector-icons'
+import {connect } from 'react-redux'
+import {View, StyleSheet, Text, TouchableOpacity, Modal, Dimensions} from 'react-native'
+import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 import AddDoitItem from './AddDoitItem'
 //get of the doit data
 import doitdata from '../doitData/data'
 
 
 //DoitList screen class
-export default class DoitList extends React.Component{
+class DoitList extends React.Component{
   constructor(props){
     super(props);
+    this.database = this.props.database
   }
   //set of the state of the modal state
   state = {
-    addDoitItemVisible:false
+    addDoitItemVisible:false,
+    newTask:''
   }
   //the Doit item modal close and open method
   closeItem = () => {
     this.setState({addDoitItemVisible:!this.state.addDoitItemVisible})
   }
+   refresh = () => {
+    this.setState({newTask:''})
+  }
+
+
+  //function to delete doit
+  deleteDoit(name){
+    try {
+      const doit = this.database.filter(doit=>doit.name==name)[0];
+      const doitIndex = this.database.indexOf(doit)
+      //this.props.closeItem()
+      //console.log(this.props.doits.length);
+      this.database.splice(doitIndex, 1)
+      this.props.refresh(doitIndex)
+      //doitdata.pop();
+      //console.log(this.props.doits.length);
+      //console.log(this.props.doits);
+      //console.log(doitIndex);
+    } catch (e) {
+      console.error(e)
+    } finally {
+
+    }
+
+
+  }
 
   //DoitList components render method
   //<AntDesign name='edit' size={30} color='black' style={styles.editButtonIcon}/>
   render(){
-    const doits = this.props.list['doits'];
-    const total_items  = doits.length;
-    const total_done_items = doits.filter(item=>item.completed).length;
-    //console.log(total_items);
-    //console.log(total_done_items);
+    const item = this.props.list.doits;
+    const total_items  = item.length;
+    const total_done_items = item.filter(item=>item.completed).length;
+    //console.log(this.props.homeRefresh)
+    //console.log(this.props.list.doits);
   return(
-    <View style={[styles.container]} activeOpacity={0.5}>
+    <TouchableOpacity style={[styles.container]} onPress={() => {this.closeItem()}} activeOpacity={0.7}>
       <Modal
         styleType='slide'
         visible={this.state.addDoitItemVisible}
-
-
         >
-        <AddDoitItem   parent={this.props.parent} name={this.props.list.name} items={this.props.list.doits} closeItem = {() => this.closeItem()}/>
+        <AddDoitItem database={this.database} name={this.props.list.name} items={this.props.list.doits} closeItem = {() => this.closeItem()}/>
       </Modal>
 
-      <TouchableOpacity onPress={() => {this.closeItem()}} style={styles.titleContainer}>
+      <View style={styles.titleContainer}>
         <Text style={styles.title} numberOfLines={1}>{this.props.list.name}</Text>
-      </TouchableOpacity>
-      <View style={styles.doitInfo}>
-        <Text style={styles.number}>{total_done_items}</Text>
-        <Text style={styles.betweenNumbers}>of</Text>
-        <Text style={styles.number}>{total_items}</Text>
       </View>
 
-    </View>
+      <View style={[styles.listBody]}>
+        <View style={styles.iconContainer}>
+          <Entypo name='list' size={80} color={total_done_items== total_items?'#1FA9FF': '#1FA9FF'}/>
+        </View>
+        <View style={styles.info}>
+          <View style={styles.side}>
+            <Text style={styles.number}>{total_items - total_done_items}</Text>
+          </View>
+          <View style={styles.side}>
+            <Text style={styles.number}>{total_items}</Text>
+          </View>
+        </View>
+      </View>
+
+    </TouchableOpacity>
   );}
 }
 
+const mapStateToProps = (state) => {
+  return {
+    doits:state.doits
+  }
+}
+const mapDispatchToProps  = (state) => {
+  return {
+    dispatch: (action ) => { dispatch(action)}
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(DoitList)
 
 
 //set of the styles with StyleSheet
 const styles = StyleSheet.create({
   container:{
-    width:200,
+    width:Dimensions.get('window').width/2,
+    height:Dimensions.get('window').width/3,
     marginVertical:20,
     marginHorizontal:30,
     borderRadius:6,
-    backgroundColor:'white',
+    backgroundColor:'#ffffff',
     elevation:8,
-    
-
   },
   title:{
     fontSize:20,
     fontWeight:"300",
-    color:'#1FA9FF',
+    color:'gray',
     alignSelf:'center',
+    marginHorizontal:5
   },
   editButtonContainer:{
     backgroundColor:'white',
@@ -79,23 +126,50 @@ const styles = StyleSheet.create({
     alignSelf:'flex-start',
 
   },
-  titleContainer:{
-    backgroundColor:'white',
-    justifyContent:'center',
-    alignItems:'center',
-    marginHorizontal:20,
-
-  },
   doitInfo:{
     justifyContent:'center',
-    alignItems:'center',
-    flex:1,
+    flexDirection:'row'
+
   },
   number:{
-    fontSize:40,
+    fontSize:20,
     color:'gray'
   },
   betweenNumbers:{
-    color:'gray'
+    color:'gray',
+    marginHorizontal:10
+  },
+  buttonsContainer:{
+    flexDirection:'row',
+    justifyContent:'center',
+    marginHorizontal:5
+  },
+  button:{
+    backgroundColor:'white',
+    padding:5,
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:4,
+    width:70,
+
+  },
+  listBody:{
+    flexDirection:'row',
+    justifyContent:'space-evenly',
+    margin:5,
+  },
+  side:{
+    opacity:.5
+  },
+  text:{
+    color:'gray',
+  },
+  iconContainer:{
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  info:{
+    justifyContent:'space-evenly',
+    alignItems:'center',
   }
 })

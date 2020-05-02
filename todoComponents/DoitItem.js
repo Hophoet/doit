@@ -5,7 +5,10 @@ import doitData from '../doitData/data';
 
 //Doit Item Class
 export default class DoitItem extends React.Component{
-
+    constructor(props){
+      super(props)
+      this.database = require('../database/data').data
+    }
     state = {
       toggleTask:''
     }
@@ -16,11 +19,11 @@ export default class DoitItem extends React.Component{
     //index = doitdata.indexOf(doit)
     //doitdata[index]['doits']
     let doit, doitIndex, item, itemIndex;
-    doit = doitData.filter(doit => doit.name == this.props.parentComponent.props.name)[0];
-    doitIndex = doitData.indexOf(doit);
-    item = doitData[doitIndex]['doits'].filter(item => item.title === title)[0];
-    itemIndex = doitData[doitIndex]['doits'].indexOf(item);
-    doitData[doitIndex]['doits'][itemIndex].completed = !doitData[doitIndex]['doits'][itemIndex].completed
+    doit = this.database.filter(doit => doit.name == this.props.parentComponent.props.name)[0];
+    doitIndex = this.database.indexOf(doit);
+    item = this.database[doitIndex]['doits'].filter(item => item.title === title)[0];
+    itemIndex = this.database[doitIndex]['doits'].indexOf(item);
+    this.database[doitIndex]['doits'][itemIndex].completed = !this.database[doitIndex]['doits'][itemIndex].completed
     //console.log(doitData[doitIndex]['doits'][itemIndex].completed);
     this.props.parentComponent.refreshComponent();
 
@@ -37,7 +40,7 @@ export default class DoitItem extends React.Component{
           <Ionicons
             size={24}
             name={item.completed? 'md-radio-button-on': 'md-radio-button-off'}
-            color={'gray'}
+            color={item.completed? 'gray': '#1FA9FF'}
 
             />
         </TouchableOpacity>

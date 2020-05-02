@@ -1,77 +1,169 @@
 import React from 'react'
-import {View, Text, FlatList, StyleSheet, Modal, TouchableOpacity, Dimensions} from 'react-native'
-import {AntDesign} from '@expo/vector-icons'
+import {connect} from 'react-redux'
+import {ActivityIndicator, View, Text, FlatList, Button, StyleSheet, Modal, TouchableOpacity, Dimensions, Animated} from 'react-native'
+import {AntDesign, Ionicons} from '@expo/vector-icons'
 import DoitList from './DoitList'
 import AddDoitList from './AddDoitList'
 
-//import the data list
-import doitdata from '../doitData/data'
+
+
+
 //the Home class
-export default class Home extends React.Component{
+class Home extends React.Component{
   //constructor of the Home class
   constructor(props){
     super(props);
+
+    this.database = require('../database/data.json')
+    this.doits = this.props.doits
     //set of the state of the modal state
+    this.height = Dimensions.get('window').height;
+    this.width = Dimensions.get('window').width;
     this.state = {
       addDoitListVisible:false,
-      addItemTitle:''
+      addItemTitle:'',
+      xTools: new Animated.Value(this.width/2),
+      deletedDoitKey:'',
+      newTask:''
     }
+
+
+
+  }
+
+
+
+  refresh = () => {
+    this.setState({newTask:''})
+  }
+  refreshFlat = (key) =>{
+    this.setState({ deletedDoitKey: key})
+  }
+
+  componentDidMount(){
+    //this.props.navigation.setParams({onSave:this._onAlert.bind(this), isSaving:false});
+
+    Animated.spring(
+      this.state.xTools,
+      {
+        toValue:this.width - Dimensions.get('window').width/3 + 20,
+        speed:1,
+        bounciness:10
+      }
+    ).start();
   }
   //the Doit List modal close and open method
   closeList = () => {
     this.setState({addDoitListVisible:!this.state.addDoitListVisible})
   }
 
+  _emptyCase = (data) => {
+    if(data.length === 0){
+      //md-list-box
+      return (
+        <View style={{ opacity:.4, justifyContent:'center', alignItems:'center', top:this.height/5}}>
+          <Text>ADD A NEW DO IT LIST </Text>
+          <Ionicons  name='ios-paper' size={24} style={{padding:5}}/>
+        </View>
+      )
+    }
+  }
+
+  _onAlert(){
+    if(this.props.navigation.state.params.isSaving == true){
+      return;
+    }
+    this.props.navigation.setParams({isSaving:true});
+    setInterval(()=>{
+      console.log('ALERT');
+      this.props.navigation.setParams({isSaving:false});
+    }, 3000)
+
+  }
+  //set of the navigation title
+  static navigationOptions = ({navigation}) => {
+    const {params = {} } = navigation.state;
+    let headerTitle = 'Doit ';
+    let headerTitleStyle =  { color: 'black'};
+    let headerStyle = { backgroundColor:'darkviolet'};
+    let headerTinColor = '';
+    //let headerTitleStyle = {};
+
+    let headerRight = (
+      <Button title='alert' onPress={()=>{params.onSave()}} color='darkviolet' />);
+    return { headerTitle, headerTitleStyle}
+  }
+
+
+
+
   //the component render method
   render(){
+    //let main = (this.props.navigation.state.params && this.props.navigation.state.params.isSaving == true)? <ActivityIndicator/>:
     return (
       <View style={styles.container}>
         <Modal
           styleType='slide'
           visible={this.state.addDoitListVisible}
           >
-          <AddDoitList closeModal = {() => this.closeList()}/>
+          <AddDoitList database={this.database.data} closeModal = {() => this.closeList()}/>
         </Modal>
 
 
         <View style={styles.design}/>
-          <AntDesign style={styles.clockIcon} name='user' size={40} color='white'/>
-        <View style={styles.toolsContainer}>
-          <TouchableOpacity
-            style={styles.addDoit}
-            onPress={this.closeList}
-            >
-            <AntDesign name='plus' size={25} color='#1FA9FF' />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.textContainer}>
 
+        <View style={styles.textContainer}>
+          <Text onPress={()=> { this.addTask()}}>Just do it</Text>
 
         </View>
 
         <View style={styles.doitList}>
+          {this._emptyCase(this.database.data)}
+          <View style={styles.flatsTitleContainer}>
+            <Text style={styles.flatsTitle}></Text>
+          </View>
           <FlatList
-            data={doitdata}
+            data={this.database.data}
             keyExtractor={item => item.name}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
+
             renderItem={({item}) => (
-              <DoitList list={item} parent={this.state} />
+              <DoitList  list={item} database={this.database.data} refresh={this.refreshFlat} />
                     ) }/>
           </View>
-          <Text onPress={()=>{this.props.navigation.navigate('Enter')}}>Enter</Text>
-          <Text onPress={()=>{this.props.navigation.navigate('Auth')}}>Authentification</Text>
-      </View>
-    )
+
+          <Animated.View style={[styles.toolsContainer, {left:this.state.xTools}]}>
+            <TouchableOpacity
+              style={styles.addDoit}
+              onPress={this.closeList}
+              >
+              <AntDesign name='plus' size={25} color='#1FA9FF' />
+            </TouchableOpacity>
+          </Animated.View>
+
+        </View>
+      )
   }
 }
 
+const mapDispatchToProps = (dispatch) =>  {
+  return {
+    dispatch: (action) => { dispatch(action)}
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    doits:state.doits
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
 //set of the styles with StyleSheet
 const styles = StyleSheet.create({
   container:{
     flex:1,
     justifyContent:'center',
-
   },
   design:{
     backgroundColor:'#1FA9FF',
@@ -96,7 +188,6 @@ const styles = StyleSheet.create({
     borderColor:'white'
   },
   doitList:{
-    height:300,
     marginTop:30,
     marginRight:Dimensions.get('window').width/5,
 
@@ -109,8 +200,17 @@ const styles = StyleSheet.create({
     elevation:20,
     borderBottomLeftRadius:10,
     borderTopLeftRadius:10,
-    width:Dimensions.get('window').width/3,
-    alignSelf:'flex-end',
+    width:Dimensions.get('window').width/2,
 
+
+  },
+  flatsTitle:{
+    fontSize:17,
+    opacity:.3,
+    textTransform:'capitalize'
+
+  },
+  flatsTitleContainer:{
+    marginLeft:10
   }
 })

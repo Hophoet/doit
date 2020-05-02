@@ -22,7 +22,6 @@ export default class Loading extends React.Component{
     )
   }
 }
-
 //set of the styles with StyleSheet
 const styles = StyleSheet.create({
   container:{

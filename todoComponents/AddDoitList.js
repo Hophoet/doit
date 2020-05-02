@@ -1,4 +1,5 @@
 import React from 'react'
+import  {connect} from 'react-redux'
 import {View, Text, TextInput, Dimensions, TouchableWithoutFeedback,
   KeyboardAvoidingView, TouchableOpacity, StyleSheet, Keyboard} from 'react-native'
 import {AntDesign} from '@expo/vector-icons'
@@ -6,35 +7,65 @@ import {AntDesign} from '@expo/vector-icons'
 import doitdata from '../doitData/data'
 
 //Add doit list screen class
-export default class AddDoitList extends React.Component{
+class AddDoitList extends React.Component{
   //DoitList constructor
   constructor(props){
     super(props);
     this.name = '';
     //set as state the name of the DoitList enter
+    this.state = {
+      error:''
+    }
 
   }
+
   //method to create DoitList with the entering name
   createDoit =  ()=>{
     //get of the name
-    const name = this.name;
+    const name = this.name.trim().toLowerCase();
+    //get of the item title
     //set of the name to empty string
     this.name = '';
+    let exists = false;
+    //condition to get of the add title is alraidy exist
+    for(let doit of this.props.doits){
+      if(doit.name === name){
+        exists = true;
+        break;
+      }
+    }
+    if(!exists){
 
-    const color = '#00cdff'
-    //condition of the name is not empty
-    if(name.length != 0){
-      //add the name into the data
-      doitData.push({
-        name,
-        color,
-        doits:[]
-      })
-      //clasing of the Doit list modal
-      this.props.closeModal();}
+      //condition of the name is not empty
+      // if(name.length != 0){
+      //   //add the name into the data
+      //   const action = {
+      //     type:'ADD_DOIT',
+      //     value:{name:name, doits:[]}
+      //   }
+      //   this.props.dispatch(action)
+      //
+      //   // clasing of the Doit list modal
+      //   this.props.closeModal();
+      // }
+      if(name.length != 0){
+        //add the name into the data
+        this.props.database.push({
+          name,
+          doits:[]
+        })
+        //clasing of the Doit list modal
+        this.props.closeModal();}
+    }
+    else{
+      this.setState({error:'Name alrady use'})
+
+  }
+
   }
   //AddDoitList components render method
   render(){
+
     return(
       <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
         <View  style={styles.container}>
@@ -48,6 +79,7 @@ export default class AddDoitList extends React.Component{
           </TouchableOpacity>
           <View style={styles.form}>
             <Text style={styles.title}>Create Doit</Text>
+            <Text style={styles.errorText}>{this.state.error}</Text>
             <TextInput
               placeholder='Doit name'
               autoFocus={true}
@@ -68,6 +100,18 @@ export default class AddDoitList extends React.Component{
   }
 }
 
+const mapDispatchToProps = (dispatch) =>  {
+  return {
+    dispatch: (action) => { dispatch(action)}
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    doits:state.doits
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddDoitList)
 //set of the styles with StyleSheet
 const styles = StyleSheet.create({
   container:{
@@ -118,5 +162,9 @@ const styles = StyleSheet.create({
     position:'absolute',
     right:-10,
     top:-10
+  },
+  errorText:{
+    color:'red',
+    alignSelf:'center'
   }
 })

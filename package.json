@@ -14,6 +14,7 @@
   "dependencies": {
     "@expo/samples": "~36.0.0",
     "@expo/vector-icons": "~10.0.0",
+    "@react-navigation/drawer": "^5.6.1",
     "@react-navigation/web": "~1.0.0-alpha.9",
     "chalk": "^3.0.0",
     "each-async": "^1.1.1",
@@ -24,6 +25,7 @@
     "expo-web-browser": "~8.0.0",
     "firebase": "^7.9.2",
     "indent-string": "^4.0.0",
+    "native-base": "^2.13.12",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
@@ -33,7 +35,9 @@
     "react-native-web": "~0.11.7",
     "react-navigation": "~4.0.10",
     "react-navigation-stack": "~1.10.3",
-    "react-navigation-tabs": "~2.6.2"
+    "react-navigation-tabs": "~2.6.2",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
