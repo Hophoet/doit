@@ -47,11 +47,11 @@ class AddDoitItem extends React.Component{
     //get of the item title
     const title = this.state.title.trim().toLowerCase();
     this.setState({title:''})
-    const items = this.props.items;
+    const tasks = this.props.tasks;
     let exists = false;
     //condition to get of the add title is alraidy exist
-    for(let item of this.props.items){
-      if(item.title === this.state.title){
+    for(let task of tasks){
+      if(task.title === this.state.title){
         exists = true;
         break;
       }
@@ -63,7 +63,7 @@ class AddDoitItem extends React.Component{
       // const action = {type:'ADD_TASK', value:{ doitIndex:doitIndex, taskTitle:this.state.title}}
       // this.props.dispatch(action)
       // this.error = '';
-      this.props.items.push(
+      tasks.push(
         {
           title:title,
           completed:false
@@ -80,7 +80,7 @@ class AddDoitItem extends React.Component{
   }
   //function to display the all done icon
   doneAll(){
-    if(this.props.items.length != 0 && this.props.items.length === this.props.items.filter(item=>item.completed).length){
+    if(this.props.tasks.length != 0 && this.props.tasks.length === this.props.tasks.filter(task=>task.completed).length){
       return <Ionicons name='md-done-all' color='#1FA9FF' size={30}/>;
     }
 
@@ -103,9 +103,9 @@ class AddDoitItem extends React.Component{
   //Render component method
   render(){
 
-    const items = this.props.items;
-    const total_number  = items.length;
-    const dones_number = items.filter(item=>item.completed).length;
+    const tasks = this.props.tasks;
+    const total_number  = tasks.length;
+    const dones_number = tasks.filter(task=>task.completed).length;
     return(
             <View style={styles.container} >
 
@@ -136,11 +136,11 @@ class AddDoitItem extends React.Component{
                 </View>
                 <View style={styles.itemsContainer}>
                     <FlatList
-                    data={items}
+                    data={tasks}
                     keyExtractor={item => item.title}
                     horizontal={false}
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({item, index}) => <DoitItem parentComponent={this}   item={item}/>}
+                    renderItem={({item, index}) => <DoitItem parentComponent={this}   task={item}/>}
                       />
                 </View>
                 <View style={styles.form}>

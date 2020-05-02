@@ -7,7 +7,7 @@ import doitData from '../doitData/data';
 export default class DoitItem extends React.Component{
     constructor(props){
       super(props)
-      this.database = require('../database/data').data
+      this.database = require('../database/data').doits
     }
     state = {
       toggleTask:''
@@ -21,9 +21,9 @@ export default class DoitItem extends React.Component{
     let doit, doitIndex, item, itemIndex;
     doit = this.database.filter(doit => doit.name == this.props.parentComponent.props.name)[0];
     doitIndex = this.database.indexOf(doit);
-    item = this.database[doitIndex]['doits'].filter(item => item.title === title)[0];
-    itemIndex = this.database[doitIndex]['doits'].indexOf(item);
-    this.database[doitIndex]['doits'][itemIndex].completed = !this.database[doitIndex]['doits'][itemIndex].completed
+    item = this.database[doitIndex]['tasks'].filter(item => item.title === title)[0];
+    itemIndex = this.database[doitIndex]['tasks'].indexOf(item);
+    this.database[doitIndex]['tasks'][itemIndex].completed = !this.database[doitIndex]['tasks'][itemIndex].completed
     //console.log(doitData[doitIndex]['doits'][itemIndex].completed);
     this.props.parentComponent.refreshComponent();
 
@@ -32,23 +32,23 @@ export default class DoitItem extends React.Component{
  }
   //DoitItem components render method
   render(){
-    const item = this.props.item;
+    const task = this.props.task;
 
     return(
       <View style={styles.itemContainer}>
-        <TouchableOpacity onPress={()=>{ this.toggleTask(item.title)}}>
+        <TouchableOpacity onPress={()=>{ this.toggleTask(task.title)}}>
           <Ionicons
             size={24}
-            name={item.completed? 'md-radio-button-on': 'md-radio-button-off'}
-            color={item.completed? 'gray': '#1FA9FF'}
+            name={task.completed? 'md-radio-button-on': 'md-radio-button-off'}
+            color={task.completed? 'gray': '#1FA9FF'}
 
             />
         </TouchableOpacity>
         <Text
           style={[styles.itemTitle,
-                {textDecorationLine:item.completed?'line-through':'none',
-                color:item.completed?'gray':'black'}]}>
-        {item.title}</Text>
+                {textDecorationLine:task.completed?'line-through':'none',
+                color:task.completed?'gray':'black'}]}>
+        {task.title}</Text>
       </View>
     );
 }

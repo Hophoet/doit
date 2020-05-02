@@ -14,8 +14,8 @@ class Home extends React.Component{
   constructor(props){
     super(props);
 
-    this.database = require('../database/data.json')
-    this.doits = this.props.doits
+    this.database = require('../database/data.json').doits
+    // this.doits = this.props.doits
     //set of the state of the modal state
     this.height = Dimensions.get('window').height;
     this.width = Dimensions.get('window').width;
@@ -106,7 +106,7 @@ class Home extends React.Component{
           styleType='slide'
           visible={this.state.addDoitListVisible}
           >
-          <AddDoitList database={this.database.data} closeModal = {() => this.closeList()}/>
+          <AddDoitList database={this.database} closeModal = {() => this.closeList()}/>
         </Modal>
 
 
@@ -118,18 +118,18 @@ class Home extends React.Component{
         </View>
 
         <View style={styles.doitList}>
-          {this._emptyCase(this.database.data)}
+          {this._emptyCase(this.database)}
           <View style={styles.flatsTitleContainer}>
             <Text style={styles.flatsTitle}></Text>
           </View>
           <FlatList
-            data={this.database.data}
+            data={this.database}
             keyExtractor={item => item.name}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
 
             renderItem={({item}) => (
-              <DoitList  list={item} database={this.database.data} refresh={this.refreshFlat} />
+              <DoitList  doit={item} database={this.database} refresh={this.refreshFlat} />
                     ) }/>
           </View>
 

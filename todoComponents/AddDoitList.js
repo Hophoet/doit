@@ -52,7 +52,7 @@ class AddDoitList extends React.Component{
         //add the name into the data
         this.props.database.push({
           name,
-          doits:[]
+          tasks:[]
         })
         //clasing of the Doit list modal
         this.props.closeModal();}

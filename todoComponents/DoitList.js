@@ -52,9 +52,10 @@ class DoitList extends React.Component{
   //DoitList components render method
   //<AntDesign name='edit' size={30} color='black' style={styles.editButtonIcon}/>
   render(){
-    const item = this.props.list.doits;
-    const total_items  = item.length;
-    const total_done_items = item.filter(item=>item.completed).length;
+    const doit = this.props.doit
+    const tasks = doit.tasks;
+    const total_tasks  = tasks.length;
+    const total_done_tasks = tasks.filter(task=>task.completed).length;
     //console.log(this.props.homeRefresh)
     //console.log(this.props.list.doits);
   return(
@@ -63,23 +64,23 @@ class DoitList extends React.Component{
         styleType='slide'
         visible={this.state.addDoitItemVisible}
         >
-        <AddDoitItem database={this.database} name={this.props.list.name} items={this.props.list.doits} closeItem = {() => this.closeItem()}/>
+        <AddDoitItem database={this.database} name={doit.name} tasks={doit.tasks} closeItem = {() => this.closeItem()}/>
       </Modal>
 
       <View style={styles.titleContainer}>
-        <Text style={styles.title} numberOfLines={1}>{this.props.list.name}</Text>
+        <Text style={styles.title} numberOfLines={1}>{doit.name}</Text>
       </View>
 
       <View style={[styles.listBody]}>
         <View style={styles.iconContainer}>
-          <Entypo name='list' size={80} color={total_done_items== total_items?'#1FA9FF': '#1FA9FF'}/>
+          <Entypo name='list' size={80} color={total_done_tasks== total_tasks?'#1FA9FF': '#1FA9FF'}/>
         </View>
         <View style={styles.info}>
           <View style={styles.side}>
-            <Text style={styles.number}>{total_items - total_done_items}</Text>
+            <Text style={styles.number}>{total_tasks - total_done_tasks}</Text>
           </View>
           <View style={styles.side}>
-            <Text style={styles.number}>{total_items}</Text>
+            <Text style={styles.number}>{total_tasks}</Text>
           </View>
         </View>
       </View>
