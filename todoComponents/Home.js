@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {ActivityIndicator, View, Text, FlatList, Button, StyleSheet, Modal, TouchableOpacity, Dimensions, Animated} from 'react-native'
-import {AntDesign, Ionicons} from '@expo/vector-icons'
+import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 import DoitList from './DoitList'
 import AddDoitList from './AddDoitList'
 
@@ -46,7 +46,7 @@ class Home extends React.Component{
     Animated.spring(
       this.state.xTools,
       {
-        toValue:this.width - Dimensions.get('window').width/3 + 20,
+        toValue:this.width - Dimensions.get('window').width/3 ,
         speed:1,
         bounciness:10
       }
@@ -63,7 +63,7 @@ class Home extends React.Component{
       return (
         <View style={{ opacity:.4, justifyContent:'center', alignItems:'center', top:this.height/5}}>
           <Text>ADD A NEW DO IT LIST </Text>
-          <Ionicons  name='ios-paper' size={24} style={{padding:5}}/>
+          <Ionicons  name='ios-empty' size={24} style={{padding:5}}/>
         </View>
       )
     }
@@ -99,6 +99,7 @@ class Home extends React.Component{
 
   //the component render method
   render(){
+
     //let main = (this.props.navigation.state.params && this.props.navigation.state.params.isSaving == true)? <ActivityIndicator/>:
     return (
       <View style={styles.container}>
@@ -118,7 +119,6 @@ class Home extends React.Component{
         </View>
 
         <View style={styles.doitList}>
-          {this._emptyCase(this.props.doits)}
           <View style={styles.flatsTitleContainer}>
             <Text style={styles.flatsTitle}></Text>
           </View>
@@ -129,17 +129,18 @@ class Home extends React.Component{
             showsHorizontalScrollIndicator={false}
 
             renderItem={({item}) => (
-              <DoitList dispatch={this.props.dispatch}  doit={item} doits={this.props.doits}  />
+              <DoitList dispatch={this.props.dispatch}  doit={item} doits={this.props.doits}   />
                     ) }/>
           </View>
 
           <Animated.View style={[styles.toolsContainer, {left:this.state.xTools}]}>
             <TouchableOpacity
               style={styles.addDoit}
-              onPress={this.closeList}
+              onPressOut={this.closeList}
               >
               <AntDesign name='plus' size={25} color='#1FA9FF' />
             </TouchableOpacity>
+            <Text style={styles.doitsCounter}>{this.props.doits.length}</Text>
           </Animated.View>
 
         </View>
@@ -183,6 +184,8 @@ const styles = StyleSheet.create({
   },
   addDoit:{
     borderWidth:1,
+    justifyContent:'center',
+    alignItems:'center',
     padding:5,
     borderColor:'#1FA9FF',
     borderColor:'white'
@@ -201,6 +204,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:10,
     borderTopLeftRadius:10,
     width:Dimensions.get('window').width/2,
+    alignItems:'center'
 
 
   },
@@ -212,5 +216,9 @@ const styles = StyleSheet.create({
   },
   flatsTitleContainer:{
     marginLeft:10
+  },
+  doitsCounter:{
+    fontSize:20,
+    opacity:.3
   }
 })

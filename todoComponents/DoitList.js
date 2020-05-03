@@ -22,9 +22,10 @@ export default class DoitList extends React.Component{
 
 
   //function to delete doit
-  deleteDoit(name){
-
-
+  //function to delete doit
+  _deleteDoit(name){
+    let action = {type:'DELETE_DOIT', value:{doitName:name}}
+    this.props.dispatch(action)
   }
 
   //DoitList components render method
@@ -34,9 +35,11 @@ export default class DoitList extends React.Component{
     const tasks = doit.tasks;
     const total_tasks  = tasks.length;
     const total_done_tasks = tasks.filter(task=>task.completed).length;
+
     //console.log(this.props.homeRefresh)
     //console.log(this.props.list.doits);
   return(
+
     <TouchableOpacity style={[styles.container]} onPress={() => {this.closeItem()}} activeOpacity={0.7}>
       <Modal
         styleType='slide'
@@ -50,9 +53,7 @@ export default class DoitList extends React.Component{
       </View>
 
       <View style={[styles.listBody]}>
-        <View style={styles.iconContainer}>
-          <Entypo name='list' size={80} color={total_done_tasks== total_tasks?'#1FA9FF': '#1FA9FF'}/>
-        </View>
+
         <View style={styles.info}>
           <View style={styles.side}>
             <Text style={styles.number}>{total_tasks - total_done_tasks}</Text>
@@ -60,6 +61,9 @@ export default class DoitList extends React.Component{
           <View style={styles.side}>
             <Text style={styles.number}>{total_tasks}</Text>
           </View>
+        </View>
+        <View style={styles.iconContainer}>
+          <Entypo name='list' size={90} color={total_done_tasks== total_tasks?'#1FA9FF': '#1FA9FF'}/>
         </View>
       </View>
 
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
   },
   listBody:{
     flexDirection:'row',
-    justifyContent:'space-evenly',
+    justifyContent:'center',
     margin:5,
   },
   side:{
@@ -138,5 +142,6 @@ const styles = StyleSheet.create({
   info:{
     justifyContent:'space-evenly',
     alignItems:'center',
+
   }
 })

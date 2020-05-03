@@ -1,11 +1,11 @@
 const initialState =  {
   doits:[
-    {name:'javascript object cloning', tasks:[{title:'search', completed:false }]}
+
   ]
 }
 
 function doitManager(state=initialState, action){
-  let nextState, doitName
+  let nextState
   switch(action.type){
     //case the add a new doit
     case 'ADD_NEW_DOIT':
@@ -16,6 +16,16 @@ function doitManager(state=initialState, action){
 
       }
       //return of the new state
+      return nextState
+    case 'DELETE_DOIT':
+      //git of the doit informations by the action
+      let doitName = action.value.doitName
+      //building of the new state without the deleted doit (using a filter)
+      nextState = {
+        ...state,
+        doits:[ ...state.doits.filter(doit => (doit.name!==doitName))]
+      }
+      //return of the new state build
       return nextState
     //case to toogle an existant task as done or not
     case 'TOOGLE_ONE_TASK':
@@ -39,7 +49,7 @@ function doitManager(state=initialState, action){
     //case to add  a new task
     case 'ADD_NEW_TASK':
       //get of the informations buy the action value
-      let doitName = action.value.doitName
+      doitName = action.value.doitName
       let newTaskTitle = action.value.taskTitle
       let newTask = { title: newTaskTitle, completed:false }
       let newTasks = [

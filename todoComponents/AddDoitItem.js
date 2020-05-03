@@ -3,7 +3,7 @@ import {View, Text, TextInput, Dimensions, KeyboardAvoidingView, Platform,
         TouchableOpacity, StyleSheet, Keyboard, TouchableWithoutFeedback,
         FlatList, Animated} from 'react-native'
 import doitdata from '../doitData/data'
-import {AntDesign, Ionicons} from '@expo/vector-icons'
+import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 //import the Doit items FlatList component
 import DoitItem from './DoitItem'
 
@@ -19,7 +19,6 @@ export default class AddDoitItem extends React.Component{
     this.error = '';
     this.state = {
       title:'',
-      refresh: '',
       toolsPosition: new Animated.Value(0)
     }
 
@@ -34,12 +33,13 @@ export default class AddDoitItem extends React.Component{
         bounciness:10
       }
     ).start()
+    // if(!this.props.tasks.length){
+    //   Keyboard.show()
+    // }
 
   }
 
-  refreshComponent = ()=>{
-    this.setState({refresh:''});
-  }
+
 
   //method, that add the item to the DoitList
   addItem =  ()=>{
@@ -50,7 +50,7 @@ export default class AddDoitItem extends React.Component{
     let exists = false;
     //condition to get of the add title is alraidy exist
     for(let task of tasks){
-      if(task.title === this.state.title){
+      if(task.title === title){
         exists = true;
         break;
       }
@@ -60,7 +60,7 @@ export default class AddDoitItem extends React.Component{
       //get of the current doit index
       let doitIndex = this.props.doits.findIndex(doit => doit.name === this.props.name)
       //building of the task add action
-      const action = {type:'ADD_NEW_TASK', value:{ doitName:this.props.name, taskTitle:this.state.title}}
+      const action = {type:'ADD_NEW_TASK', value:{ doitName:this.props.name, taskTitle:title}}
       //execuction of the action with the dispatch method
       this.props.dispatch(action)
       //set of the error message to empty
@@ -83,9 +83,10 @@ export default class AddDoitItem extends React.Component{
 
   }
   //function to delete doit
-  deleteDoit(name){
-
-
+  _deleteDoit(name){
+    this.props.closeItem()
+    let action = {type:'DELETE_DOIT', value:{doitName:name}}
+    this.props.dispatch(action)
   }
 
   //Render component method
@@ -95,7 +96,6 @@ export default class AddDoitItem extends React.Component{
     const dones_number = tasks.filter(task=>task.completed).length;
     return(
             <View style={styles.container} >
-
                 <View style={styles.design}>
                   <TouchableOpacity
                     style={styles.closeContainer}
@@ -103,6 +103,15 @@ export default class AddDoitItem extends React.Component{
                     >
                     <AntDesign name='close' color='white' size={30}/>
                   </TouchableOpacity>
+                  <View style={styles.deleteDoitContainer}>
+                    <TouchableOpacity
+                      style={styles.deleteDoit}
+                      onPress={()=> {this._deleteDoit(this.props.name)}}
+                        >
+                      <Entypo name='trash' color='#1FA9FF' size={30}/>
+                    </TouchableOpacity>
+                  </View>
+
                 </View>
 
                 <View style={styles.doitContainer} >
@@ -114,8 +123,9 @@ export default class AddDoitItem extends React.Component{
 
                       </View>
                     </View>
-
                     <Text style={{color:'gray', marginLeft:5}}></Text>
+
+
                   </Animated.View>
                   <Text style={{color:'red'}}>
                   {this.error && this.error}
@@ -136,7 +146,8 @@ export default class AddDoitItem extends React.Component{
                     onChangeText={(text)=>{this.setState({title:text})  }}
                     onSubmitEditing={this.addItem}
                     value={this.state.title}
-                    style={styles.textinput}/>
+                    style={styles.textinput}
+                    />
                   <TouchableOpacity
                     style={styles.buttonContainer}
                     onPress={this.addItem}
@@ -218,13 +229,26 @@ const styles = StyleSheet.create({
         backgroundColor:'white'
       }
     }),
-    paddingVertical:10,
+    marginTop:20,
     elevation:20,
     borderBottomLeftRadius:10,
     borderTopLeftRadius:10,
     width:Dimensions.get('window').width,
-    paddingRight:Dimensions.get('window').width/3,
+    paddingRight:Dimensions.get('window').width/3
 
 
+  },
+  deleteDoit:{
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:60,
+    padding:10,
+    backgroundColor:'white',
+    elevation:5
+  },
+  deleteDoitContainer:{
+    flex:.5,
+    justifyContent:'center',
+    alignItems:'center'
   }
 })

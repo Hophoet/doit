@@ -84,6 +84,7 @@ export default class AddDoitList extends React.Component{
             <TouchableOpacity
               style={styles.buttonContainer}
               onPress = {this.createDoit}
+              activeOpacity={.6}
               >
               <Text style={styles.buttonText}>Create</Text>
             </TouchableOpacity>
@@ -139,12 +140,12 @@ const styles = StyleSheet.create({
   },
   design:{
     backgroundColor:'#1FA9FF',
-
-    height:800,
-    width:100,
+    height:Dimensions.get('window').height,
+    width:Dimensions.get('window').width/5,
     position:'absolute',
-    right:-10,
-    top:-10
+    right:0,
+    top:0,
+    alignItems:'center',
   },
   errorText:{
     color:'red',
