@@ -10,26 +10,26 @@ export default class Enter extends React.Component{
     this.width = Dimensions.get('window').width
     this.height = Dimensions.get('window').height
     this.state = {
-      yIcon: new Animated.Value(0)
+      yIcon: new Animated.Value(this.width/3)
     }
 
   }
   //Component dit mount method redefinition
   componentDidMount(){
     //set of the time to log the the App screen
-      setTimeout(
-        () => {this.props.navigation.navigate('App')}
-     , 3000)
-    // Animated.spring(
-    //   this.state.yIcon,
-    //   {
-    //     toValue:this.height/2,
-    //     speed:2,
-    //     bounciness:5
-    //   }
-    // ).start(()=>{
-    //   this.props.navigation.navigate('App')
-    // })
+     //  setTimeout(
+     //    () => {this.props.navigation.navigate('App')}
+     // , 3000)
+    Animated.spring(
+      this.state.yIcon,
+      {
+        toValue:0,
+        speed:2,
+        bounciness:5
+      }
+    ).start(()=>{
+      // this.props.navigation.navigate('App')
+    })
 
 
   }
@@ -42,10 +42,12 @@ export default class Enter extends React.Component{
         <Animated.View style={[styles.main, {top: this.state.yIcon }]}>
           <View style={styles.textContainer}>
             <Text style={styles.firstText}>Doit</Text>
-            <Text>Just do it </Text>
           </View>
         </Animated.View>
 
+        <View>
+          <Text style={styles.bmpText}><Text>BMP</Text> Become More Productive </Text>
+        </View>
 
       </View>
     )
@@ -74,8 +76,12 @@ const styles  = StyleSheet.create({
     backgroundColor:'white',
     alignItems:'center',
     justifyContent:'center',
-
-
+    padding:5,
+    borderStartWidth:3,
+    borderColor:'#1FA9FF',
+    padding:10,
+    borderRadius:60,
+    marginBottom:10
 
   },
   firstText:{
@@ -87,5 +93,8 @@ const styles  = StyleSheet.create({
   },
   main:{
     alignItems:'center'
+  },
+  bmpText:{
+    color:'gray'
   }
 })

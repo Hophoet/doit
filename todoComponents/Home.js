@@ -107,14 +107,14 @@ class Home extends React.Component{
           styleType='slide'
           visible={this.state.addDoitListVisible}
           >
-          <AddDoitList dispatch={this.props.dispatch}  doits={this.props.doits} closeModal = {() => this.closeList()}/>
+          <AddDoitList dispatch={this.props.dispatch}  doits={this.props.doits} closeModal={() => this.closeList()}/>
         </Modal>
 
 
         <View style={styles.design}/>
 
         <View style={styles.textContainer}>
-          <Text onPress={()=> { this.addTask()}}>Just do it</Text>
+          <Text onPress={()=>{ this.addTask()}}>Just do it</Text>
 
         </View>
 
@@ -147,18 +147,18 @@ class Home extends React.Component{
       )
   }
 }
-
+//maps with the state global
 const mapDispatchToProps = (dispatch) =>  {
   return {
     dispatch: (action) => { dispatch(action)}
   }
 }
-
 const mapStateToProps = (state) => {
   return {
     doits:state.doits
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
 //set of the styles with StyleSheet
 const styles = StyleSheet.create({

@@ -2,7 +2,6 @@ import React from 'react'
 import {View, Text, TextInput, Dimensions, KeyboardAvoidingView, Platform,
         TouchableOpacity, StyleSheet, Keyboard, TouchableWithoutFeedback,
         FlatList, Animated} from 'react-native'
-import doitdata from '../doitData/data'
 import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 //import the Doit items FlatList component
 import DoitItem from './DoitItem'
@@ -103,14 +102,7 @@ export default class AddDoitItem extends React.Component{
                     >
                     <AntDesign name='close' color='white' size={30}/>
                   </TouchableOpacity>
-                  <View style={styles.deleteDoitContainer}>
-                    <TouchableOpacity
-                      style={styles.deleteDoit}
-                      onPress={()=> {this._deleteDoit(this.props.name)}}
-                        >
-                      <Entypo name='trash' color='#1FA9FF' size={30}/>
-                    </TouchableOpacity>
-                  </View>
+
 
                 </View>
 
@@ -120,11 +112,15 @@ export default class AddDoitItem extends React.Component{
                       <View style={{marginHorizontal:10}}>
                         <Text numberOfLines={3}  style={styles.itemTitle}>{this.props.name} </Text>
                         <Text style={styles.doitInfos}> {dones_number} of {total_number} tasks </Text>
-
                       </View>
                     </View>
-                    <Text style={{color:'gray', marginLeft:5}}></Text>
-
+                      <TouchableOpacity
+                        activeOpacity={.7}
+                        style={styles.deleteDoit}
+                        onPress={()=> {this._deleteDoit(this.props.name)}}
+                          >
+                        <Entypo name='trash' color='white' size={30}/>
+                      </TouchableOpacity>
 
                   </Animated.View>
                   <Text style={{color:'red'}}>
@@ -243,12 +239,12 @@ const styles = StyleSheet.create({
     alignItems:'center',
     borderRadius:60,
     padding:10,
-    backgroundColor:'white',
-    elevation:5
-  },
-  deleteDoitContainer:{
-    flex:.5,
-    justifyContent:'center',
-    alignItems:'center'
+    backgroundColor:'#1FA9FF',
+    alignSelf:'flex-end',
+    elevation:20,
+    borderWidth:2,
+    borderColor:'white',
+    bottom:-20,
+    marginRight:10
   }
 })
