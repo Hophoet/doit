@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import {AntDesign, Ionicons} from '@expo/vector-icons'
-import doitData from '../doitData/data';
+import colors from '../constants/Colors'
 
 //Doit Item Class
 export default class DoitItem extends React.Component{
@@ -26,7 +26,7 @@ export default class DoitItem extends React.Component{
           <Ionicons
             size={24}
             name={task.completed? 'md-radio-button-on': 'md-radio-button-off'}
-            color={task.completed? 'gray': '#1FA9FF'}
+            color={task.completed? 'gray': colors.mainColor}
 
             />
         </TouchableOpacity>

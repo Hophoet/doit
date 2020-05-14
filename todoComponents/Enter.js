@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet, Dimensions, Animated} from 'react-native'
 import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
+import colors from '../constants/Colors'
 
 //Enter show screen class
 export default class Enter extends React.Component{
@@ -17,9 +18,9 @@ export default class Enter extends React.Component{
   //Component dit mount method redefinition
   componentDidMount(){
     //set of the time to log the the App screen
-     //  setTimeout(
-     //    () => {this.props.navigation.navigate('App')}
-     // , 3000)
+      setTimeout(
+        () => {this.props.navigation.navigate('App')}
+     , 5000)
     Animated.spring(
       this.state.yIcon,
       {
@@ -47,6 +48,7 @@ export default class Enter extends React.Component{
 
         <View>
           <Text style={styles.bmpText}><Text>BMP</Text> Become More Productive </Text>
+
         </View>
 
       </View>
@@ -64,7 +66,7 @@ const styles  = StyleSheet.create({
 
   },
   design:{
-    backgroundColor:'#1FA9FF',
+    backgroundColor:colors.mainColor,
     height:Dimensions.get('window').height,
     width:Dimensions.get('window').width/5,
     position:'absolute',
@@ -78,7 +80,7 @@ const styles  = StyleSheet.create({
     justifyContent:'center',
     padding:5,
     borderStartWidth:3,
-    borderColor:'#1FA9FF',
+    borderColor:colors.mainColor,
     padding:10,
     borderRadius:60,
     marginBottom:10

@@ -1,10 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {ActivityIndicator, View, Text, FlatList, Button, StyleSheet, Modal, TouchableOpacity, Dimensions, Animated} from 'react-native'
-import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
+import {ActivityIndicator, View, Text, FlatList, Button, StyleSheet,
+  Modal, TouchableOpacity, Dimensions, Animated} from 'react-native'
+import {AntDesign, Ionicons, Entypo,} from '@expo/vector-icons'
 import DoitList from './DoitList'
 import AddDoitList from './AddDoitList'
-
+import colors from '../constants/Colors'
 
 
 
@@ -115,7 +116,7 @@ class Home extends React.Component{
 
         <View style={styles.textContainer}>
           <Text onPress={()=>{ this.addTask()}}>Just do it</Text>
-
+          <Button title='login' onPress={()=>this.props.navigation.navigate('Auth')}/>
         </View>
 
         <View style={styles.doitList}>
@@ -138,7 +139,7 @@ class Home extends React.Component{
               style={styles.addDoit}
               onPressOut={this.closeList}
               >
-              <AntDesign name='plus' size={25} color='#1FA9FF' />
+              <AntDesign name='plus' size={25} color={colors.mainColor} />
             </TouchableOpacity>
             <Text style={styles.doitsCounter}>{this.props.doits.length}</Text>
           </Animated.View>
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
   },
   design:{
-    backgroundColor:'#1FA9FF',
+    backgroundColor:colors.mainColor,
     height:Dimensions.get('window').height,
     width:Dimensions.get('window').width/5,
     position:'absolute',
@@ -183,12 +184,10 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   addDoit:{
-    borderWidth:1,
     justifyContent:'center',
     alignItems:'center',
     padding:5,
-    borderColor:'#1FA9FF',
-    borderColor:'white'
+
   },
   doitList:{
     marginTop:30,

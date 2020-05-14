@@ -1,10 +1,11 @@
 import React from 'react'
 import {View, Text, StyleSheet, TextInput,
   KeyboardAvoidingView, TouchableOpacity, Dimensions} from 'react-native'
+import colors from '../constants/Colors'
 
 //Register screen class
 export default class Register extends React.Component{
-  //Register components render method 
+  //Register components render method
   render(){
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   auth:{
-    backgroundColor:'#1FA9FF',
+    backgroundColor:colors.mainColor,
     width:Dimensions.get('window').width/3,
     padding:10,
     justifyContent:'center',
@@ -88,10 +89,9 @@ const styles = StyleSheet.create({
 
   },
   design:{
-    backgroundColor:'#1FA9FF',
-
-    height:800,
-    width:100,
+    backgroundColor:colors.mainColor,
+    height:Dimensions.get('window').height,
+    width:Dimensions.get('window').width/5,
     position:'absolute',
     right:-10,
     top:-10

@@ -1,10 +1,11 @@
 import React from 'react'
-import {View, Text, TextInput, Dimensions, KeyboardAvoidingView, Platform,
-        TouchableOpacity, StyleSheet, Keyboard, TouchableWithoutFeedback,
+import {View, Text, TextInput, Dimensions, KeyboardAvoidingView,
+        TouchableOpacity, StyleSheet,
         FlatList, Animated} from 'react-native'
 import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 //import the Doit items FlatList component
 import DoitItem from './DoitItem'
+import colors from '../constants/Colors'
 
 //add doit item class
 export default class AddDoitItem extends React.Component{
@@ -18,14 +19,14 @@ export default class AddDoitItem extends React.Component{
     this.error = '';
     this.state = {
       title:'',
-      toolsPosition: new Animated.Value(0)
+      titlePosition: new Animated.Value(0)
     }
 
   }
 
   componentDidMount(){
     Animated.spring(
-      this.state.toolsPosition,
+      this.state.titlePosition,
       {
         toValue:this.width/3,
         speed:1,
@@ -102,12 +103,18 @@ export default class AddDoitItem extends React.Component{
                     >
                     <AntDesign name='close' color='white' size={30}/>
                   </TouchableOpacity>
-
-
+                </View>
+                <View style={styles.toolsContainer}>
+                  <TouchableOpacity style={styles.toolsButton}>
+                    <Ionicons name='ios-play' color='white' size={30}/>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.toolsButton}>
+                    <Ionicons name='ios-pause' color='white' size={30}/>
+                  </TouchableOpacity>
                 </View>
 
                 <View style={styles.doitContainer} >
-                  <Animated.View style={[styles.toolsContainer, {left:this.state.toolsPosition}]}>
+                  <Animated.View style={[styles.titleContainer, {left:this.state.titlePosition}]}>
                     <View style={{flexDirection:'row', alignItems:'center'}}>
                       <View style={{marginHorizontal:10}}>
                         <Text numberOfLines={3}  style={styles.itemTitle}>{this.props.name} </Text>
@@ -194,7 +201,7 @@ const styles = StyleSheet.create({
     color:'#1FA9FF',
   },
   design:{
-    backgroundColor:'#1FA9FF',
+    backgroundColor:colors.mainColor,
     height:Dimensions.get('window').height,
     width:Dimensions.get('window').width/5,
     position:'absolute',
@@ -219,18 +226,15 @@ const styles = StyleSheet.create({
     marginTop:20,
     flex:1
   },
-  toolsContainer:{
-    ...Platform.select({
-      'android':{
-        backgroundColor:'white'
-      }
-    }),
+  titleContainer:{
+    backgroundColor:'white',
     marginTop:20,
     elevation:20,
     borderBottomLeftRadius:10,
     borderTopLeftRadius:10,
     width:Dimensions.get('window').width,
-    paddingRight:Dimensions.get('window').width/3
+    paddingRight:Dimensions.get('window').width/3,
+
 
 
   },
@@ -239,12 +243,36 @@ const styles = StyleSheet.create({
     alignItems:'center',
     borderRadius:60,
     padding:10,
-    backgroundColor:'#1FA9FF',
+    backgroundColor:'#f005',
     alignSelf:'flex-end',
     elevation:20,
     borderWidth:2,
     borderColor:'white',
     bottom:-20,
     marginRight:10
+  },
+  toolsContainer:{
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center',
+    position:'absolute',
+    height:Dimensions.get('window').height,
+    padding:5
+
+  },
+  toolsButton:{
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:60,
+    padding:10,
+    height:50,
+    width:50,
+    backgroundColor:colors.mainColor,
+    elevation:20,
+    borderWidth:2,
+    borderColor:'white',
+    bottom:-20,
+    marginBottom:10,
+
   }
 })

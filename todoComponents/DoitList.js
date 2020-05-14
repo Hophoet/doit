@@ -3,7 +3,7 @@ import {View, StyleSheet, Text, TouchableOpacity, Modal, Dimensions} from 'react
 import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 import AddDoitItem from './AddDoitItem'
 //get of the doit data
-import doitdata from '../doitData/data'
+import colors from '../constants/Colors'
 
 
 //DoitList screen class
@@ -63,7 +63,7 @@ export default class DoitList extends React.Component{
           </View>
         </View>
         <View style={styles.iconContainer}>
-          <Entypo name='list' size={90} color={total_done_tasks== total_tasks?'#1FA9FF': '#1FA9FF'}/>
+          <Entypo name='list' size={90} color={colors.mainColor}/>
         </View>
       </View>
 

@@ -2,6 +2,7 @@ import React from 'react'
 import {View, TextInput, Text, StyleSheet,
   TouchableOpacity, Dimensions, KeyboardAvoidingView} from 'react-native'
 import {AntDesign} from '@expo/vector-icons'
+import colors from '../constants/Colors'
 
 //Login screen class
 export default class Login extends React.Component{
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   auth:{
-    backgroundColor:'#1FA9FF',
+    backgroundColor:colors.mainColor,
     width:Dimensions.get('window').width/3,
     padding:10,
     justifyContent:'center',
@@ -103,9 +104,9 @@ const styles = StyleSheet.create({
 
   },
   design:{
-    backgroundColor:'#1FA9FF',
-    height:800,
-    width:100,
+    backgroundColor:colors.mainColor,
+    height:Dimensions.get('window').height,
+    width:Dimensions.get('window').width/5,
     position:'absolute',
     right:0,
     top:0,
