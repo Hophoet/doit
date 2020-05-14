@@ -19,7 +19,7 @@ export default class Enter extends React.Component{
   componentDidMount(){
     //set of the time to log the the App screen
       setTimeout(
-        () => {this.props.navigation.navigate('App')}
+        () => {this.props.navigation.navigate('Loading')}
      , 5000)
     Animated.spring(
       this.state.yIcon,

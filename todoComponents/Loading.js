@@ -1,9 +1,16 @@
 import React from 'react'
-import {View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, Dimensions} from 'react-native'
-
+import {View, Text, StyleSheet, ActivityIndicator, TouchableOpacity,
+  Dimensions, Button} from 'react-native'
+import * as firebase from 'firebase';
 //Loading class
 export default class Loading extends React.Component{
   //Loading Loading component render method
+  componentDidMount(){
+    firebase.auth().onAuthStateChanged(user =>{
+      console.log('USER '+user);
+      this.props.navigation.navigate(user?'App':'App')
+    })
+  }
   render(){
     return (
       <View style={styles.container}>
@@ -17,6 +24,7 @@ export default class Loading extends React.Component{
             >
             <Text style={styles.authText}>Authentification</Text>
           </TouchableOpacity>
+          <Button title='App' onPress={()=>this.props.navigation.navigate('App')}/>
         </View>
       </View>
     )

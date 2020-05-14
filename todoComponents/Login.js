@@ -1,8 +1,9 @@
 import React from 'react'
-import {View, TextInput, Text, StyleSheet,
+import {View, TextInput, Text, StyleSheet, ActivityIndicator,
   TouchableOpacity, Dimensions, KeyboardAvoidingView} from 'react-native'
 import {AntDesign} from '@expo/vector-icons'
 import colors from '../constants/Colors'
+import * as firebase from 'firebase';
 
 //Login screen class
 export default class Login extends React.Component{
@@ -12,11 +13,35 @@ export default class Login extends React.Component{
     //set of the state, the user email and password
     this.email = '';
     this.password = '';
+    this.state = {
+      error:null,
+      is_loading:false
+    }
+  }
+  _loading = ()=> {
+    if(this.state.is_loading){
+      return (
+        <ActivityIndicator size='large' />
+      )
+    }
+
+  }
+  _handLog = () =>{
+    // reset the error state , the acive of the loading state
+    this.setState({is_loading:true, error:null}, () =>{
+    const email = this.email
+    const password = this.password
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(error => {
+        this.setState({is_loading:false})
+        this.setState({error:error.message})})
+    })
+
   }
 
   //login to the Home screen method
  login = ()=> {
-    this.props.navigation.navigate('Home')
+    this.props.navigation.navigate('Loading')
   }
   //Login components render method
   render(){
@@ -26,6 +51,12 @@ export default class Login extends React.Component{
         </View>
         <View style={styles.design}>
           <AntDesign style={styles.clockIcon} name='clockcircleo' size={40} color='white'/>
+        </View>
+        <View>
+        {this._loading()}
+        </View>
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{this.state.error}</Text>
         </View>
         <View style={styles.form}>
           <TextInput
@@ -42,10 +73,10 @@ export default class Login extends React.Component{
             secureTextEntry
             placeholder='Password'
             onChangeText={(password)=>{this.password = password;}}
-            onSubmitEditing={this.login}/>
+            onSubmitEditing={this._handLog}/>
           <TouchableOpacity
             style={[styles.auth, {alignSelf:'center', marginVertical:20}]}
-            onPress= {()=>{this.props.navigation.navigate('Enter')}}
+            onPress= {this._handLog}
             >
             <Text style={styles.authText}>Validate</Text>
           </TouchableOpacity>
@@ -115,5 +146,13 @@ const styles = StyleSheet.create({
   },
   clockIcon:{
     margin:10
+  },
+  errorContainer:{
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  errorText:{
+    color:'red',
+    textAlign:'center'
   }
 })

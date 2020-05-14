@@ -19,7 +19,7 @@ export default class AddDoitItem extends React.Component{
     this.error = '';
     this.state = {
       title:'',
-      titlePosition: new Animated.Value(0)
+      titlePosition: new Animated.Value(this.width/5)
     }
 
   }
@@ -105,10 +105,10 @@ export default class AddDoitItem extends React.Component{
                   </TouchableOpacity>
                 </View>
                 <View style={styles.toolsContainer}>
-                  <TouchableOpacity style={styles.toolsButton}>
-                    <Ionicons name='ios-play' color='white' size={30}/>
+                  <TouchableOpacity activeOpacity={.5} style={styles.toolsButton}>
+                    <Entypo name='tools' color='white' size={30}/>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.toolsButton}>
+                  <TouchableOpacity activeOpacity={.5} style={styles.toolsButton}>
                     <Ionicons name='ios-pause' color='white' size={30}/>
                   </TouchableOpacity>
                 </View>
@@ -252,11 +252,10 @@ const styles = StyleSheet.create({
     marginRight:10
   },
   toolsContainer:{
-    flex:1,
-    alignItems:'center',
-    justifyContent:'center',
     position:'absolute',
-    height:Dimensions.get('window').height,
+    top:0,
+    left:0,
+    flexDirection:'row',
     padding:5
 
   },
@@ -271,8 +270,8 @@ const styles = StyleSheet.create({
     elevation:20,
     borderWidth:2,
     borderColor:'white',
-    bottom:-20,
-    marginBottom:10,
+
+
 
   }
 })
