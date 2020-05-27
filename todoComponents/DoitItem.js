@@ -43,15 +43,7 @@ export default class DoitItem extends React.Component{
 
 //set of the styles with StyleSheet
 const styles = StyleSheet.create({
-  container:{
 
-  },
-  title:{
-    fontSize:25,
-    fontWeight:"300",
-    color:'white',
-
-  },
   editButtonContainer:{
     backgroundColor:'#1FA9FF',
     padding:5,
@@ -62,9 +54,12 @@ const styles = StyleSheet.create({
   },
   itemContainer:{
     marginBottom:10,
+    paddingRight:20,
     flexDirection:'row',
+    alignItems:'center',
   },
   itemTitle:{
-    marginLeft:10
+    marginLeft:10,
+
   }
 })

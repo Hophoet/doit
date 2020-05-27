@@ -6,7 +6,7 @@ import {AntDesign, Ionicons, Entypo,} from '@expo/vector-icons'
 import DoitList from './DoitList'
 import AddDoitList from './AddDoitList'
 import colors from '../constants/Colors'
-
+import * as firebase from 'firebase';
 
 
 //the Home class
@@ -14,7 +14,7 @@ class Home extends React.Component{
   //constructor of the Home class
   constructor(props){
     super(props);
-
+    this.user = firebase.auth().currentUser
     //this.database = require('../database/data.json').doits
     //this.doits = this.props.doits
     //set of the state of the modal state
@@ -36,6 +36,7 @@ class Home extends React.Component{
 
   componentDidMount(){
     //this.props.navigation.setParams({onSave:this._onAlert.bind(this), isSaving:false});
+    // get of the currentUser info
 
     Animated.spring(
       this.state.xTools,
@@ -108,7 +109,8 @@ class Home extends React.Component{
         <View style={styles.design}/>
 
         <View style={styles.textContainer}>
-        
+          <Text>{this.user.email}</Text>
+          <Text>{this.user.state}</Text>
         </View>
 
         <View style={styles.doitList}>

@@ -8,6 +8,7 @@ export default class Loading extends React.Component{
   componentDidMount(){
     firebase.auth().onAuthStateChanged(user =>{
       //navigate to the app is the user is authentificate else navigate to the auth screen(login, register)
+
       this.props.navigation.navigate(user?'App':'Auth')
     })
   }

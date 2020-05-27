@@ -45,35 +45,38 @@ export default class AddDoitItem extends React.Component{
   addItem =  ()=>{
     //get of the item title
     const title = this.state.title.trim().toLowerCase();
-    this.setState({title:''})
-    const tasks = this.props.tasks;
-    let exists = false;
-    //condition to get of the add title is alraidy exist
-    for(let task of tasks){
-      if(task.title === title){
-        exists = true;
-        break;
+    //checking if the title is not null
+    if(title){
+      this.setState({title:''})
+      const tasks = this.props.tasks;
+      let exists = false;
+      //condition to get of the add title is alraidy exist
+      for(let task of tasks){
+        if(task.title === title){
+          exists = true;
+          break;
+        }
       }
-    }
-    //adding condition
-    if(!exists){
-      //get of the current doit index
-      let doitIndex = this.props.doits.findIndex(doit => doit.name === this.props.name)
-      //building of the task add action
-      const action = {type:'ADD_NEW_TASK', value:{ doitName:this.props.name, taskTitle:title}}
-      //execuction of the action with the dispatch method
-      this.props.dispatch(action)
-      //set of the error message to empty
-      this.error = ''
-    }
-    //error condition
-    else{
-      //set of the error message
-      this.error = 'Name error';
+      //adding condition
+      if(!exists){
+        //get of the current doit index
+        let doitIndex = this.props.doits.findIndex(doit => doit.name === this.props.name)
+        //building of the task add action
+        const action = {type:'ADD_NEW_TASK', value:{ doitName:this.props.name, taskTitle:title}}
+        //execuction of the action with the dispatch method
+        this.props.dispatch(action)
+        //set of the error message to empty
+        this.error = ''
+      }
+      //error condition
+      else{
+        //set of the error message
+        this.error = 'Name error';
 
-    }
+      }
 
-    //Keyboard.dismiss();
+      //Keyboard.dismiss();
+    }
   }
   //function to display the all done icon
   doneAll(){
@@ -104,35 +107,28 @@ export default class AddDoitItem extends React.Component{
                     <AntDesign name='close' color='white' size={30}/>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.toolsContainer}>
-                  <TouchableOpacity activeOpacity={.5} style={styles.toolsButton}>
-                    <Entypo name='tools' color='white' size={30}/>
-                  </TouchableOpacity>
-                  <TouchableOpacity activeOpacity={.5} style={styles.toolsButton}>
-                    <Ionicons name='ios-pause' color='white' size={30}/>
-                  </TouchableOpacity>
-                </View>
+
 
                 <View style={styles.doitContainer} >
                   <Animated.View style={[styles.titleContainer, {left:this.state.titlePosition}]}>
                     <View style={{flexDirection:'row', alignItems:'center'}}>
                       <View style={{marginHorizontal:10}}>
                         <Text numberOfLines={3}  style={styles.itemTitle}>{this.props.name} </Text>
-                        <Text style={styles.doitInfos}> {dones_number} of {total_number} tasks </Text>
+                        <Text style={styles.doitInfos}> {total_number - dones_number} of {total_number} tasks </Text>
                       </View>
                     </View>
-                      <TouchableOpacity
-                        activeOpacity={.7}
-                        style={styles.deleteDoit}
-                        onPress={()=> {this._deleteDoit(this.props.name)}}
+                    <TouchableOpacity
+                      activeOpacity={.7}
+                      style={styles.deleteDoit}
+                      onPress={()=> {this._deleteDoit(this.props.name)}}
                           >
-                        <Entypo name='trash' color='white' size={30}/>
-                      </TouchableOpacity>
+                      <Entypo name='trash' color='white' size={30}/>
+                    </TouchableOpacity>
 
                   </Animated.View>
-                  <Text style={{color:'red'}}>
-                  {this.error && this.error}
-                  </Text>
+                  <View style={styles.entryErrorContainer}>
+                    <Text style={styles.entryErrorText}>{this.error && this.error}</Text>
+                  </View>
                 </View>
                 <View style={styles.itemsContainer}>
                     <FlatList
@@ -144,16 +140,18 @@ export default class AddDoitItem extends React.Component{
                       />
                 </View>
                 <View style={styles.form}>
-                  <TextInput
-                    placeholder='Task name'
-                    onChangeText={(text)=>{this.setState({title:text})  }}
-                    onSubmitEditing={this.addItem}
-                    value={this.state.title}
-                    style={styles.textinput}
-                    />
+                  <View style={styles.textInputContainer}>
+                    <TextInput
+                      placeholder='Task name'
+                      onChangeText={(text)=>{this.setState({title:text})  }}
+                      onSubmitEditing={this.addItem}
+                      value={this.state.title}
+                      style={styles.textinput}
+                      />
+                    </View>
                   <TouchableOpacity
                     style={styles.buttonContainer}
-                    onPress={this.addItem}
+                    onPress={ ()=> {this.addItem()}}
                     >
                     <Ionicons name='ios-add' size={40} color='white'/>
                   </TouchableOpacity>
@@ -183,14 +181,17 @@ const styles = StyleSheet.create({
     fontSize:30,
     alignSelf:'center'
   },
+  textInputContainer:{
+    paddingHorizontal:10
+  },
   textinput:{
-    marginLeft:10,
+
     borderRadius:3,
     backgroundColor:'white',
     elevation:20,
     height:50,
     paddingHorizontal:10,
-    width:Dimensions.get('window').width - Dimensions.get('window').width/5
+    width:Dimensions.get('window').width - (Dimensions.get('window').width/5+20)
   },
   buttonContainer:{
     width:Dimensions.get('window').width/5,
@@ -222,13 +223,14 @@ const styles = StyleSheet.create({
 
   },
   itemsContainer:{
-    marginLeft: Dimensions.get('window').width/6,
+    marginLeft: Dimensions.get('window').width/8,
+
     marginTop:20,
     flex:1
   },
   titleContainer:{
     backgroundColor:'white',
-    marginTop:20,
+    marginTop:10,
     elevation:20,
     borderBottomLeftRadius:10,
     borderTopLeftRadius:10,
@@ -243,7 +245,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     borderRadius:60,
     padding:10,
-    backgroundColor:'#f005',
+    backgroundColor:colors.mainColor,
     alignSelf:'flex-end',
     elevation:20,
     borderWidth:2,
@@ -251,27 +253,13 @@ const styles = StyleSheet.create({
     bottom:-20,
     marginRight:10
   },
-  toolsContainer:{
-    position:'absolute',
-    top:0,
-    left:0,
-    flexDirection:'row',
-    padding:5
-
-  },
-  toolsButton:{
+  entryErrorContainer:{
     justifyContent:'center',
     alignItems:'center',
-    borderRadius:60,
-    padding:10,
-    height:50,
-    width:50,
-    backgroundColor:colors.mainColor,
-    elevation:20,
-    borderWidth:2,
-    borderColor:'white',
-
-
-
+    width:Dimensions.get('window').width/3,
+    padding:2
+  },
+  entryErrorText:{
+    color:'red'
   }
 })
