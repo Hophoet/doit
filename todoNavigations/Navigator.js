@@ -8,17 +8,18 @@ import Login from '../todoComponents/Login'
 import Register from '../todoComponents/Register'
 import Enter from '../todoComponents/Enter'
 import * as firebase from 'firebase';
+
+//set of the firebase configurations params
 var firebaseConfig = {
-  apiKey: "AIzaSyBRuSUDxkoll50qmwAPBcStsMu62C7GdXs",
-  authDomain: "train-app-105b7.firebaseapp.com",
-  databaseURL: "https://train-app-105b7.firebaseio.com",
-  projectId: "train-app-105b7",
-  storageBucket: "train-app-105b7.appspot.com",
-  messagingSenderId: "733969777138",
-  appId: "1:733969777138:web:493007095644585f166b6b",
-  measurementId: "G-GNVYJR4KQY"
-};
-// Initialize Firebase
+    apiKey: "AIzaSyA-3SKgbdKssr0wyaGKecj7LD2tONCzdjo",
+    authDomain: "doit-7516a.firebaseapp.com",
+    databaseURL: "https://doit-7516a.firebaseio.com",
+    projectId: "doit-7516a",
+    storageBucket: "doit-7516a.appspot.com",
+    messagingSenderId: "83231160054",
+    appId: "1:83231160054:web:21989b705c2de7f6eb1ed7"
+  };
+// Initialize Firebase with the configuration
 firebase.initializeApp(firebaseConfig);
 
 const AuthStack = createStackNavigator({

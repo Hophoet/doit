@@ -27,21 +27,29 @@ export default class Login extends React.Component{
 
   }
   _handLog = () =>{
-    // reset the error state , the acive of the loading state
-    this.setState({is_loading:true, error:null}, () =>{
-    const email = this.email
-    const password = this.password
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(error => {
-        this.setState({is_loading:false})
-        this.setState({error:error.message})})
-    })
+    //checking if the not alrady loading
+    if (!this.state.is_loading){
+      // reset the error state , the acive of the loading state
+      this.setState({is_loading:true, error:null}, () =>{
+      //get of the entry info (email, password )
+      const email = this.email
+      const password = this.password
+      //call of the signing function with the email,and password
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        //catching the error if it is occured
+        .catch(error => {
+          //set the loading variable the false to stop the loading indicator
+          this.setState({is_loading:false})
+          //set the error message to display
+          this.setState({error:error.message})})
+      })
+  }
 
   }
 
-  //login to the Home screen method
- login = ()=> {
-    this.props.navigation.navigate('Loading')
+  //navigate method
+  _navigate_to = (screenName)=> {
+    this.props.navigation.navigate(screenName)
   }
   //Login components render method
   render(){
@@ -52,9 +60,14 @@ export default class Login extends React.Component{
         <View style={styles.design}>
           <AntDesign style={styles.clockIcon} name='clockcircleo' size={40} color='white'/>
         </View>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerFirstText}>Login</Text>
+          <Text style={styles.headerSecondText}>Please sign in to continue.</Text>
+        </View>
         <View>
         {this._loading()}
         </View>
+
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>{this.state.error}</Text>
         </View>
@@ -75,23 +88,20 @@ export default class Login extends React.Component{
             onChangeText={(password)=>{this.password = password;}}
             onSubmitEditing={this._handLog}/>
           <TouchableOpacity
+            activeOpacity={.8}
             style={[styles.auth, {alignSelf:'center', marginVertical:20}]}
             onPress= {this._handLog}
             >
-            <Text style={styles.authText}>Validate</Text>
+            <Text style={styles.loginButtonText}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{alignItems:'center'}}
-            onPress={()=>{this.props.navigation.navigate('Register')}}
-            >
-            <Text
-              style={{ textAlign:'center'}}
-            >{`Haven't account\nRegister`}</Text>
-
+            activeOpacity={.8}
+            style={styles.footerContainer}
+            onPress={()=>{this._navigate_to('Register')}} >
+            <Text style={styles.footerFirstText}>Don't have an account?</Text>
+            <Text style={styles.footerSecondText}>Sign up</Text>
           </TouchableOpacity>
-          <View>
-            <Text onPress={()=>{this.props.navigation.navigate('Enter')}}>Enter</Text>
-          </View>
+
         </View>
 
       </KeyboardAvoidingView>
@@ -113,8 +123,10 @@ const styles = StyleSheet.create({
     alignItems:'center',
     borderRadius:4
   },
-  authText:{
-    color:'white'
+  loginButtonText:{
+    color:'white',
+    fontSize:17,
+    fontWeight:'bold'
   },
   textContainer:{
     justifyContent:'center',
@@ -149,10 +161,36 @@ const styles = StyleSheet.create({
   },
   errorContainer:{
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    marginTop:10
   },
   errorText:{
     color:'red',
     textAlign:'center'
+  },
+  footerContainer:{
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+    marginTop:30,
+  },
+  footerFirstText:{
+    color:'gray'
+  },
+  footerSecondText:{
+    color:colors.mainColor,
+    fontWeight:'bold',
+    marginHorizontal:5
+  },
+  headerContainer:{
+    marginLeft:20,
+  },
+  headerFirstText:{
+    fontWeight:'bold',
+    fontSize:25
+  },
+  headerSecondText:{
+    color:'gray',
+    marginTop:5
   }
 })

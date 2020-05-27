@@ -26,20 +26,31 @@ export default class Register extends React.Component{
 
   }
   _signUp = ()=>{
-    // reset the error state
-    this.setState({error:null, is_loading:true})
-    firebase.auth()
-      .createUserWithEmailAndPassword(this.email, this.password)
-      .then(credentialUser => {
-        return credentialUser.user.updateProfile({ name:this.name });
+    //checking if the not alrady loading
+    if (!this.state.is_loading){
+      // reset the register error state, and the loading variable to true
+      this.setState({error:null, is_loading:true}, ()=> {
+      // call of the user creation method
+      firebase.auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(credentialUser => {
+          return credentialUser.user.updateProfile({ name:this.name });
+        })
+        .catch(error => {
+          //set the error message to display
+          this.setState({is_loading:false})
+          //set the loading variable the false to stop the loading indicator
+          this.setState({error:error.message})
+        })
       })
-      .catch(error => {
-        console.log(error.key)
-        this.setState({error:error.message})
-        this.setState({is_loading:false})
-      })
-
   }
+  }
+
+  //navigate method
+  _navigate_to = (screenName)=> {
+    this.props.navigation.navigate(screenName)
+  }
+
   //Register components render method
   render(){
     return (
@@ -47,6 +58,9 @@ export default class Register extends React.Component{
           <View style={styles.textContainer}>
           </View>
           <View style={styles.design}/>
+          <View style={styles.headerContainer}>
+            <Text style={styles.headerFirstText}>Create Account</Text>
+          </View>
           <View>
           {this._loading()}
           </View>
@@ -78,19 +92,19 @@ export default class Register extends React.Component{
               ref='password'
               secureTextEntry/>
             <TouchableOpacity
+              activeOpacity={.8}
               style={[styles.auth, {alignSelf:'center', marginVertical:20}]}
               onPress= {this._signUp}
               >
-              <Text style={styles.authText}>Validate</Text>
+              <Text style={styles.signUpButtonText}>Sign up</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{alignItems:'center'}}
-              >
-              <Text
-                onPress={()=>{this.props.navigation.navigate('Login')}}
-                style={{ textAlign:'center'}}
-              >{'I Have an account\nLogin'}</Text>
-            </TouchableOpacity>
+              activeOpacity={.8}
+              style={styles.footerContainer}
+              onPress={()=>{this._navigate_to('Login')}} >
+              <Text style={styles.footerFirstText}>Don't have an account?</Text>
+              <Text style={styles.footerSecondText}>Sign in</Text>
+          </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
     )
@@ -111,8 +125,10 @@ const styles = StyleSheet.create({
     alignItems:'center',
     borderRadius:4
   },
-  authText:{
-    color:'white'
+  signUpButtonText:{
+    color:'white',
+    fontSize:17,
+    fontWeight:'bold'
   },
   textContainer:{
     justifyContent:'center',
@@ -142,10 +158,32 @@ const styles = StyleSheet.create({
   },
   errorContainer:{
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    marginTop:10,
   },
   errorText:{
     color:'red',
     textAlign:'center'
+  },
+  footerContainer:{
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+    marginTop:30,
+  },
+  footerFirstText:{
+    color:'gray'
+  },
+  footerSecondText:{
+    color:colors.mainColor,
+    fontWeight:'bold',
+    marginHorizontal:5
+  },
+  headerContainer:{
+    marginLeft:20,
+  },
+  headerFirstText:{
+    fontWeight:'bold',
+    fontSize:25
   }
 })

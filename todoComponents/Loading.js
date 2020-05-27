@@ -7,8 +7,8 @@ export default class Loading extends React.Component{
   //Loading Loading component render method
   componentDidMount(){
     firebase.auth().onAuthStateChanged(user =>{
-      console.log('USER '+user);
-      this.props.navigation.navigate(user?'App':'App')
+      //navigate to the app is the user is authentificate else navigate to the auth screen(login, register)
+      this.props.navigation.navigate(user?'App':'Auth')
     })
   }
   render(){
@@ -17,14 +17,7 @@ export default class Loading extends React.Component{
         <View style={styles.textContainer}>
 
           <ActivityIndicator size='large'/>
-          <Text>Loading screen</Text>
-          <TouchableOpacity
-            style={styles.auth}
-            onPress= {()=>{this.props.navigation.navigate('Auth')}}
-            >
-            <Text style={styles.authText}>Authentification</Text>
-          </TouchableOpacity>
-          <Button title='App' onPress={()=>this.props.navigation.navigate('App')}/>
+
         </View>
       </View>
     )

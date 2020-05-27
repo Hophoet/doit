@@ -34,13 +34,6 @@ class Home extends React.Component{
 
 
 
-  refresh = () => {
-    this.setState({newTask:''})
-  }
-  refreshFlat = (key) =>{
-    this.setState({ deletedDoitKey: key})
-  }
-
   componentDidMount(){
     //this.props.navigation.setParams({onSave:this._onAlert.bind(this), isSaving:false});
 
@@ -115,8 +108,7 @@ class Home extends React.Component{
         <View style={styles.design}/>
 
         <View style={styles.textContainer}>
-          <Text onPress={()=>{ this.addTask()}}>Just do it</Text>
-          <Button title='login' onPress={()=>this.props.navigation.navigate('Auth')}/>
+        
         </View>
 
         <View style={styles.doitList}>
