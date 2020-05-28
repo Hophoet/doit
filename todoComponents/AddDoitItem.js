@@ -147,6 +147,7 @@ export default class AddDoitItem extends React.Component{
                       onSubmitEditing={this.addItem}
                       value={this.state.title}
                       style={styles.textinput}
+                      autoFocus={tasks.length?false:true}
                       />
                     </View>
                   <TouchableOpacity
