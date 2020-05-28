@@ -24,8 +24,7 @@ class Home extends React.Component{
       addDoitListVisible:false,
       addItemTitle:'',
       xTools: new Animated.Value(this.width/2),
-      deletedDoitKey:'',
-      newTask:''
+
     }
 
 
@@ -52,29 +51,7 @@ class Home extends React.Component{
     this.setState({addDoitListVisible:!this.state.addDoitListVisible})
   }
 
-  _emptyCase = (data) => {
-    if(data.length === 0){
-      //md-list-box
-      return (
-        <View style={{ opacity:.4, justifyContent:'center', alignItems:'center', top:this.height/5}}>
-          <Text>ADD A NEW DO IT LIST </Text>
-          <Ionicons  name='ios-empty' size={24} style={{padding:5}}/>
-        </View>
-      )
-    }
-  }
 
-  _onAlert(){
-    if(this.props.navigation.state.params.isSaving == true){
-      return;
-    }
-    this.props.navigation.setParams({isSaving:true});
-    setInterval(()=>{
-      console.log('ALERT');
-      this.props.navigation.setParams({isSaving:false});
-    }, 3000)
-
-  }
   //set of the navigation title
   static navigationOptions = ({navigation}) => {
     const {params = {} } = navigation.state;
