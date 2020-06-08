@@ -9,6 +9,7 @@ import Register from '../todoComponents/Register'
 import Enter from '../todoComponents/Enter'
 import * as firebase from 'firebase';
 
+
 //set of the firebase configurations params
 var firebaseConfig = {
     apiKey: "AIzaSyA-3SKgbdKssr0wyaGKecj7LD2tONCzdjo",

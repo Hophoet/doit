@@ -30,11 +30,13 @@ export default class DoitItem extends React.Component{
 
             />
         </TouchableOpacity>
-        <Text
-          style={[styles.itemTitle,
-                {textDecorationLine:task.completed?'line-through':'none',
-                color:task.completed?'gray':'black'}]}>
-        {task.title}</Text>
+        <TouchableOpacity onPress={()=>{ this.toggleTask(task.title)}}>
+          <Text
+            style={[styles.itemTitle,
+                  {textDecorationLine:task.completed?'line-through':'none',
+                  color:task.completed?'gray':'black'}]}>
+          {task.title}</Text>
+        </TouchableOpacity>
       </View>
     );
 }
@@ -53,13 +55,15 @@ const styles = StyleSheet.create({
     top:-5
   },
   itemContainer:{
-    marginBottom:10,
+    marginBottom:20,
     paddingRight:20,
     flexDirection:'row',
     alignItems:'center',
+
   },
   itemTitle:{
     marginLeft:10,
+    fontSize:15
 
   }
 })

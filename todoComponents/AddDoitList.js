@@ -2,8 +2,6 @@ import React from 'react'
 import {View, Text, TextInput, Dimensions, TouchableWithoutFeedback,
   KeyboardAvoidingView, TouchableOpacity, StyleSheet, Keyboard} from 'react-native'
 import {AntDesign} from '@expo/vector-icons'
-//doit data import
-import doitdata from '../doitData/data'
 
 //Add doit list screen class
 export default class AddDoitList extends React.Component{

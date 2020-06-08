@@ -62,6 +62,7 @@ class Home extends React.Component{
     //let headerTitleStyle = {};
 
     let headerRight = (
+
       <Button title='alert' onPress={()=>{params.onSave()}} color='darkviolet' />);
     return { headerTitle, headerTitleStyle}
   }
@@ -75,6 +76,7 @@ class Home extends React.Component{
     //let main = (this.props.navigation.state.params && this.props.navigation.state.params.isSaving == true)? <ActivityIndicator/>:
     return (
       <View style={styles.container}>
+        <Button title='authentification' onPress={()=> { this.props.navigation.navigate('Auth')}} />
         <Modal
           styleType='slide'
           visible={this.state.addDoitListVisible}
@@ -87,7 +89,8 @@ class Home extends React.Component{
 
         <View style={styles.textContainer}>
           <Text>{this.user.email}</Text>
-          <Text>{this.user.state}</Text>
+          <Text>{Date(this.user.createdAt)}</Text>
+          <Text>{Date(this.user.lastLogin)}</Text>
         </View>
 
         <View style={styles.doitList}>

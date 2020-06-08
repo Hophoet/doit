@@ -186,7 +186,8 @@ const styles = StyleSheet.create({
     paddingHorizontal:10
   },
   textinput:{
-
+    borderWidth:1,
+    borderColor:colors.mainColor,
     borderRadius:3,
     backgroundColor:'white',
     elevation:20,
