@@ -6,7 +6,7 @@ import {AntDesign, Ionicons, Entypo,} from '@expo/vector-icons'
 import DoitList from './DoitList'
 import AddDoitList from './AddDoitList'
 import colors from '../constants/Colors'
-import * as firebase from 'firebase';
+
 
 
 //the Home class
@@ -14,7 +14,7 @@ class Home extends React.Component{
   //constructor of the Home class
   constructor(props){
     super(props);
-    this.user = firebase.auth().currentUser
+
     //this.database = require('../database/data.json').doits
     //this.doits = this.props.doits
     //set of the state of the modal state
@@ -76,7 +76,7 @@ class Home extends React.Component{
     //let main = (this.props.navigation.state.params && this.props.navigation.state.params.isSaving == true)? <ActivityIndicator/>:
     return (
       <View style={styles.container}>
-        <Button title='authentification' onPress={()=> { this.props.navigation.navigate('Auth')}} />
+
         <Modal
           styleType='slide'
           visible={this.state.addDoitListVisible}
@@ -88,9 +88,7 @@ class Home extends React.Component{
         <View style={styles.design}/>
 
         <View style={styles.textContainer}>
-          <Text>{this.user.email}</Text>
-          <Text>{Date(this.user.createdAt)}</Text>
-          <Text>{Date(this.user.lastLogin)}</Text>
+
         </View>
 
         <View style={styles.doitList}>
@@ -160,7 +158,10 @@ const styles = StyleSheet.create({
   addDoit:{
     justifyContent:'center',
     alignItems:'center',
+
+    marginRight:5,
     padding:5,
+
 
   },
   doitList:{

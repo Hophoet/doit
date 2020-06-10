@@ -71,7 +71,7 @@ export default class AddDoitItem extends React.Component{
       //error condition
       else{
         //set of the error message
-        this.error = 'Name error';
+        this.error = 'Task already add';
 
       }
 

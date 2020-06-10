@@ -19,7 +19,7 @@ export default class Enter extends React.Component{
   componentDidMount(){
     //set of the time to log the the App screen
       setTimeout(
-        () => {this.props.navigation.navigate('Loading')}
+        () => {this.props.navigation.navigate('App')}
      , 5000)
     Animated.spring(
       this.state.yIcon,
@@ -48,7 +48,6 @@ export default class Enter extends React.Component{
 
         <View>
           <Text style={styles.bmpText}><Text>BMP</Text> Become More Productive </Text>
-
         </View>
 
       </View>
@@ -75,7 +74,7 @@ const styles  = StyleSheet.create({
     alignItems:'center',
   },
   textContainer:{
-    backgroundColor:'white',
+  
     alignItems:'center',
     justifyContent:'center',
     padding:5,

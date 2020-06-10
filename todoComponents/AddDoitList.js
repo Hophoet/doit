@@ -1,7 +1,8 @@
 import React from 'react'
 import {View, Text, TextInput, Dimensions, TouchableWithoutFeedback,
   KeyboardAvoidingView, TouchableOpacity, StyleSheet, Keyboard} from 'react-native'
-import {AntDesign} from '@expo/vector-icons'
+import {AntDesign, Entypo, Ionicons} from '@expo/vector-icons'
+import colors from '../constants/Colors'
 
 //Add doit list screen class
 export default class AddDoitList extends React.Component{
@@ -51,7 +52,7 @@ export default class AddDoitList extends React.Component{
       }
     }
     else{
-      this.setState({error:'Name alrady use'})
+      this.setState({error:'Doit already exists'})
 
   }
 
@@ -71,7 +72,7 @@ export default class AddDoitList extends React.Component{
             <AntDesign name='close' color='white' size={30}/>
           </TouchableOpacity>
           <View style={styles.form}>
-            <Text style={styles.title}>Create Doit</Text>
+            <Text style={styles.title}>Create new <Text style={styles.doitText}>Doit</Text></Text>
             <Text style={styles.errorText}>{this.state.error}</Text>
             <TextInput
               placeholder='Doit name'
@@ -85,6 +86,7 @@ export default class AddDoitList extends React.Component{
               activeOpacity={.6}
               >
               <Text style={styles.buttonText}>Create</Text>
+              <Entypo name='list' color='#fff' size={25}/>
             </TouchableOpacity>
           </View>
 
@@ -109,7 +111,12 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize:30,
-    alignSelf:'center'
+    alignSelf:'center',
+    color:'gray'
+  },
+  doitText:{
+    color:colors.mainColor,
+    fontWeight:'bold'
   },
   textinput:{
     marginTop:20,
@@ -123,18 +130,24 @@ const styles = StyleSheet.create({
     elevation:10
   },
   buttonContainer:{
-    backgroundColor:'#1FA9FF',
+    backgroundColor:colors.mainColor,
     marginTop:20,
-    justifyContent:'center',
+    justifyContent:'space-evenly',
     alignItems:'center',
+    padding:10,
     height:40,
-    width:Dimensions.get('window').width/2,
+    width:Dimensions.get('window').width/3,
     alignSelf:'center',
-    borderRadius:4
+    borderRadius:4,
+    elevation:10,
+    flexDirection:'row'
+
 
   },
   buttonText:{
     color:'white',
+    fontWeight:'bold',
+    fontSize:17
   },
   design:{
     backgroundColor:'#1FA9FF',
