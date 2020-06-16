@@ -7,6 +7,8 @@ import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 import DoitItem from './DoitItem'
 import colors from '../constants/Colors'
 
+
+
 //add doit item class
 export default class AddDoitItem extends React.Component{
   //Constructor of the AddDoitList
@@ -86,11 +88,24 @@ export default class AddDoitItem extends React.Component{
 
   }
   //function to delete doit
-  _deleteDoit(name){
-    this.props.closeItem()
-    let action = {type:'DELETE_DOIT', value:{doitName:name}}
-    this.props.dispatch(action)
+  _deleteDoit = (name) => {
+    //get of the total and the done task
+    let all_task_count = this.props.tasks.length
+    let all_done_task_count = this.props.tasks.filter(task=>task.completed).length
+    //check that the total tasks are done
+    if( all_task_count === all_done_task_count){
+      //close of the modal and the delete of the doIt
+      this.props.closeItem()
+      let action = {type:'DELETE_DOIT', value:{doitName:name}}
+      this.props.dispatch(action)
+    }
+    else{
+      console.log('error')
+
+    }
+
   }
+
 
   //Render component method
   render(){
@@ -110,7 +125,7 @@ export default class AddDoitItem extends React.Component{
 
 
                 <View style={styles.doitContainer} >
-                  <Animated.View style={[styles.titleContainer, {left:this.state.titlePosition}]}>
+                  <View style={[styles.titleContainer, {left:this.width/3}]}>
                     <View style={{flexDirection:'row', alignItems:'center'}}>
                       <View style={{marginHorizontal:10}}>
                         <Text numberOfLines={3}  style={styles.itemTitle}>{this.props.name} </Text>
@@ -119,16 +134,14 @@ export default class AddDoitItem extends React.Component{
                     </View>
                     <TouchableOpacity
                       activeOpacity={.7}
-                      style={styles.deleteDoit}
+                      style={styles.doneIconContainer}
                       onPress={()=> {this._deleteDoit(this.props.name)}}
                           >
-                      <Entypo name='trash' color='white' size={30}/>
+                      <Ionicons name='ios-done-all' style={styles.doneIcon} color='white' size={40}/>
                     </TouchableOpacity>
 
-                  </Animated.View>
-                  <View style={styles.entryErrorContainer}>
-                    <Text style={styles.entryErrorText}>{this.error && this.error}</Text>
                   </View>
+              
                 </View>
                 <View style={styles.itemsContainer}>
                     <FlatList
@@ -142,7 +155,7 @@ export default class AddDoitItem extends React.Component{
                 <View style={styles.form}>
                   <View style={styles.textInputContainer}>
                     <TextInput
-                      placeholder='Task name'
+                      placeholder='Task title'
                       onChangeText={(text)=>{this.setState({title:text})  }}
                       onSubmitEditing={this.addItem}
                       value={this.state.title}
@@ -215,6 +228,7 @@ const styles = StyleSheet.create({
   itemTitle:{
     fontSize:20,
     fontWeight:'bold',
+    color:'#000'
   },
   doitInfos:{
     color:'gray',
@@ -225,7 +239,7 @@ const styles = StyleSheet.create({
 
   },
   itemsContainer:{
-    marginLeft: Dimensions.get('window').width/8,
+    marginLeft: Dimensions.get('window').width/10,
 
     marginTop:20,
     flex:1
@@ -242,11 +256,13 @@ const styles = StyleSheet.create({
 
 
   },
-  deleteDoit:{
+  doneIconContainer:{
     justifyContent:'center',
     alignItems:'center',
     borderRadius:60,
     padding:10,
+    width:60,
+    height:60,
     backgroundColor:colors.mainColor,
     alignSelf:'flex-end',
     elevation:20,
@@ -254,6 +270,9 @@ const styles = StyleSheet.create({
     borderColor:'white',
     bottom:-20,
     marginRight:10
+  },
+  doneIcon:{
+
   },
   entryErrorContainer:{
     justifyContent:'center',
