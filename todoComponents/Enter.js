@@ -11,7 +11,7 @@ export default class Enter extends React.Component{
     this.width = Dimensions.get('window').width
     this.height = Dimensions.get('window').height
     this.state = {
-      yIcon: new Animated.Value(this.width/3)
+      LeftText: new Animated.Value(Dimensions.get('window').width/2)
     }
 
   }
@@ -19,10 +19,12 @@ export default class Enter extends React.Component{
   componentDidMount(){
     //set of the time to log the the App screen
       setTimeout(
-        () => {this.props.navigation.navigate('App')}
-     , 5000)
+        () => {
+          this.props.navigation.navigate('App')
+        }
+     , 3000)
     Animated.spring(
-      this.state.yIcon,
+      this.state.LeftText,
       {
         toValue:0,
         speed:2,
@@ -36,19 +38,19 @@ export default class Enter extends React.Component{
   }
   //Enter components render method
   render(){
+    //animation initial position
+
     return(
       <View style={styles.container}>
         <View style={styles.design}/>
 
-        <Animated.View style={[styles.main, {top: this.state.yIcon }]}>
           <View style={styles.textContainer}>
-            <Text style={styles.firstText}>Doit</Text>
+            <Text style={styles.doItText}>DoIt</Text>
           </View>
-        </Animated.View>
 
-        <View>
-          <Text style={styles.bmpText}><Text>BMP</Text> Become More Productive </Text>
-        </View>
+        <Animated.View style={[styles.secondContainer, {   left:this.state.LeftText }]}>
+          <Text style={styles.secondText}><Text style={styles.bmpText}>BMP</Text> Become More Productive </Text>
+        </Animated.View>
 
       </View>
     )
@@ -74,28 +76,26 @@ const styles  = StyleSheet.create({
     alignItems:'center',
   },
   textContainer:{
-  
+
     alignItems:'center',
     justifyContent:'center',
-    padding:5,
-    borderStartWidth:3,
-    borderColor:colors.mainColor,
     padding:10,
-    borderRadius:60,
-    marginBottom:10
+
 
   },
-  firstText:{
+  doItText:{
     fontSize:25,
     fontWeight:'bold',
+    color:'#000'
   },
   secondText:{
-    borderRadius:10
+    borderRadius:10,
   },
-  main:{
-    alignItems:'center'
+  secondContainer:{
+    width:Dimensions.get('window').width/2,
   },
   bmpText:{
-    color:'gray'
+    color:'#000',
+    fontWeight:'bold'
   }
 })

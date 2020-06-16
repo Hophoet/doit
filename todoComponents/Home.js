@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {ActivityIndicator, View, Text, FlatList, Button, StyleSheet,
+import {View, Text, FlatList, StyleSheet,
   Modal, TouchableOpacity, Dimensions, Animated} from 'react-native'
+import Expo from 'expo'
+
 import {AntDesign, Ionicons, Entypo,} from '@expo/vector-icons'
 import DoitList from './DoitList'
 import AddDoitList from './AddDoitList'
@@ -72,7 +74,7 @@ class Home extends React.Component{
 
   //the component render method
   render(){
-
+    
     //let main = (this.props.navigation.state.params && this.props.navigation.state.params.isSaving == true)? <ActivityIndicator/>:
     return (
       <View style={styles.container}>
