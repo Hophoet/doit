@@ -1,15 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {View, Text, FlatList, StyleSheet,
-  Modal, TouchableOpacity, Dimensions, Animated} from 'react-native'
-import Expo from 'expo'
+  Modal, TouchableOpacity, Dimensions, Animated, Button} from 'react-native'
 
 import {AntDesign, Ionicons, Entypo,} from '@expo/vector-icons'
 import DoitList from './DoitList'
 import AddDoitList from './AddDoitList'
 import colors from '../constants/Colors'
-
-
+import  {ModalPopup} from '../animations/ModalPopup'
 
 //the Home class
 class Home extends React.Component{
@@ -57,7 +55,7 @@ class Home extends React.Component{
   //set of the navigation title
   static navigationOptions = ({navigation}) => {
     const {params = {} } = navigation.state;
-    let headerTitle = 'Doit ';
+    let headerTitle = 'DoIt ';
     let headerTitleStyle =  { color: 'black'};
     let headerStyle = { backgroundColor:'darkviolet'};
     let headerTinColor = '';
@@ -74,13 +72,13 @@ class Home extends React.Component{
 
   //the component render method
   render(){
-    
+
     //let main = (this.props.navigation.state.params && this.props.navigation.state.params.isSaving == true)? <ActivityIndicator/>:
     return (
       <View style={styles.container}>
-
         <Modal
-          styleType='slide'
+          animationType='slide'
+          animated={true}
           visible={this.state.addDoitListVisible}
           >
           <AddDoitList dispatch={this.props.dispatch}  doits={this.props.doits} closeModal={() => this.closeList()}/>
@@ -195,6 +193,7 @@ const styles = StyleSheet.create({
   },
   doitsCounter:{
     fontSize:20,
-    opacity:.3
+    opacity:.4,
+    color:'#000'
   }
 })
