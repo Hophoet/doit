@@ -35,12 +35,17 @@ export default class DoitList extends React.Component{
     const tasks = doit.tasks;
     const total_tasks  = tasks.length;
     const total_done_tasks = tasks.filter(task=>task.completed).length;
-
+    const doitDone = total_done_tasks !== 0 && total_done_tasks === total_tasks
+    //set of the colors depending of the doIt state
+    const textColor = doitDone?'#fff':"gray"
+    const iconColor = doitDone?'#fff':colors.mainColor
+    const counterColor = doitDone?'#fff':'gray'
+    const bgColor = doitDone?colors.mainColor:'#fff'
     //console.log(this.props.homeRefresh)
     //console.log(this.props.list.doits);
   return(
 
-    <TouchableOpacity style={[styles.container]} onPress={() => {this.closeItem()}} activeOpacity={0.7}>
+    <TouchableOpacity style={[styles.container, {backgroundColor:bgColor}]} onPress={() => {this.closeItem()}} activeOpacity={0.7}>
       <Modal
         styleType='slide'
         visible={this.state.addDoitItemVisible}
@@ -49,21 +54,21 @@ export default class DoitList extends React.Component{
       </Modal>
 
       <View style={styles.titleContainer}>
-        <Text style={styles.title} numberOfLines={1}>{doit.name}</Text>
+        <Text style={[styles.title, {color:textColor}]} numberOfLines={1}>{doit.name}</Text>
       </View>
 
       <View style={[styles.listBody]}>
 
         <View style={styles.info}>
           <View style={styles.side}>
-            <Text style={styles.number}>{total_tasks - total_done_tasks}</Text>
+            <Text style={[styles.number, {color:counterColor}]}>{total_tasks - total_done_tasks}</Text>
           </View>
           <View style={styles.side}>
-            <Text style={styles.number}>{total_tasks}</Text>
+            <Text style={[styles.number, {color:counterColor}]}>{total_tasks}</Text>
           </View>
         </View>
         <View style={styles.iconContainer}>
-          <Entypo name='list' size={90} color={colors.mainColor}/>
+          <Entypo name='list' size={90} color={iconColor}/>
         </View>
       </View>
 
@@ -80,13 +85,12 @@ const styles = StyleSheet.create({
     marginVertical:20,
     marginHorizontal:30,
     borderRadius:6,
-    backgroundColor:'#ffffff',
+
     elevation:8,
   },
   title:{
     fontSize:20,
     fontWeight:"300",
-    color:'gray',
     alignSelf:'center',
     marginHorizontal:5
   },
@@ -104,7 +108,6 @@ const styles = StyleSheet.create({
   },
   number:{
     fontSize:20,
-    color:'gray'
   },
   betweenNumbers:{
     color:'gray',
