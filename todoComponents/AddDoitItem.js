@@ -100,7 +100,7 @@ export default class AddDoitItem extends React.Component{
       this.props.dispatch(action)
     }
     else{
-      console.log('error')
+
 
     }
 
@@ -112,6 +112,8 @@ export default class AddDoitItem extends React.Component{
     const tasks = this.props.tasks;
     const total_number  = tasks.length;
     const dones_number = tasks.filter(task=>task.completed).length;
+    const doitDone = dones_number !== 0 && dones_number === total_number
+
     return(
             <View style={styles.container} >
                 <View style={styles.design}>
@@ -141,7 +143,7 @@ export default class AddDoitItem extends React.Component{
                     </TouchableOpacity>
 
                   </View>
-              
+
                 </View>
                 <View style={styles.itemsContainer}>
                     <FlatList
