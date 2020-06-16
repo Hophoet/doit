@@ -75,7 +75,7 @@ export default class AddDoitList extends React.Component{
             <Text style={styles.title}>Create new <Text style={styles.doitText}>Doit</Text></Text>
             <Text style={styles.errorText}>{this.state.error}</Text>
             <TextInput
-              placeholder='Doit name'
+              placeholder='DoIt title'
               autoFocus={true}
               onChangeText={text=>{this.name = text.trim().toLowerCase()}}
               onSubmitEditing={this.createDoit}
