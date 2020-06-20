@@ -3,7 +3,7 @@ import {View, Text, TextInput, Dimensions, TouchableWithoutFeedback,
   KeyboardAvoidingView, TouchableOpacity, StyleSheet, Keyboard} from 'react-native'
 import {AntDesign, Entypo, Ionicons} from '@expo/vector-icons'
 import colors from '../constants/Colors'
-
+import Toast from './toasts/Toast'
 //Add doit list screen class
 export default class AddDoitList extends React.Component{
   //DoitList constructor
@@ -12,7 +12,6 @@ export default class AddDoitList extends React.Component{
     this.name = '';
     //set as state the name of the DoitList enter
     this.state = {
-      error:''
     }
 
   }
@@ -23,7 +22,7 @@ export default class AddDoitList extends React.Component{
     const name = this.name.trim().toLowerCase();
     //get of the item title
     //set of the name to empty string
-    this.name = '';
+
     let exists = false;
     //condition to get of the add title is alraidy exist
     for(let doit of this.props.doits){
@@ -33,7 +32,6 @@ export default class AddDoitList extends React.Component{
       }
     }
     if(!exists){
-
       //condition of the name is not empty
       if(name.length != 0){
         //add the name into the data
@@ -50,9 +48,15 @@ export default class AddDoitList extends React.Component{
         this.props.closeModal();
 
       }
+      else{
+        Toast._show_center_toast('Enter the doIt title')
+
+      }
     }
     else{
-      this.setState({error:'Doit already exists'})
+      // this.setState({error:'Doit '})
+      Toast._show_center_toast('DoIt already exists ')
+
 
   }
 
@@ -72,8 +76,7 @@ export default class AddDoitList extends React.Component{
             <AntDesign name='close' color='white' size={30}/>
           </TouchableOpacity>
           <View style={styles.form}>
-            <Text style={styles.title}>Create new <Text style={styles.doitText}>Doit</Text></Text>
-            <Text style={styles.errorText}>{this.state.error}</Text>
+            <Text style={styles.title}>Create new <Text style={styles.doitText}>DoIt</Text></Text>
             <TextInput
               placeholder='DoIt title'
               autoFocus={true}
