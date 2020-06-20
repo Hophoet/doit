@@ -6,6 +6,7 @@ import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 //import the Doit items FlatList component
 import DoitItem from './DoitItem'
 import colors from '../constants/Colors'
+import Toast from './toasts/Toast'
 
 
 
@@ -18,7 +19,7 @@ export default class AddDoitItem extends React.Component{
     this.width = Dimensions.get('window').width,
     this.height = Dimensions.get('window').height,
     //item title
-    this.error = '';
+
     this.state = {
       title:'',
       titlePosition: new Animated.Value(this.width/5)
@@ -59,6 +60,7 @@ export default class AddDoitItem extends React.Component{
           break;
         }
       }
+
       //adding condition
       if(!exists){
         //get of the current doit index
@@ -68,16 +70,19 @@ export default class AddDoitItem extends React.Component{
         //execuction of the action with the dispatch method
         this.props.dispatch(action)
         //set of the error message to empty
-        this.error = ''
       }
       //error condition
       else{
         //set of the error message
-        this.error = 'Task already add';
+        Toast._show_center_toast('Task already add')
 
       }
 
       //Keyboard.dismiss();
+    }
+    else{
+      Toast._show_center_toast('Enter the task Title')
+
     }
   }
   //function to display the all done icon
@@ -100,6 +105,8 @@ export default class AddDoitItem extends React.Component{
       this.props.dispatch(action)
     }
     else{
+
+      Toast._show_center_toast("Tasks not finished")
 
 
     }
