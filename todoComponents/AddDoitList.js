@@ -49,13 +49,13 @@ export default class AddDoitList extends React.Component{
 
       }
       else{
-        Toast._show_center_toast('Enter the doIt title')
+        Toast._show_center_toast('Enter the doit title')
 
       }
     }
     else{
       // this.setState({error:'Doit '})
-      Toast._show_center_toast('DoIt already exists ')
+      Toast._show_center_toast('Doit already exists ')
 
 
   }
@@ -76,9 +76,9 @@ export default class AddDoitList extends React.Component{
             <AntDesign name='close' color='white' size={30}/>
           </TouchableOpacity>
           <View style={styles.form}>
-            <Text style={styles.title}>Create new <Text style={styles.doitText}>DoIt</Text></Text>
+            <Text style={styles.title}>Create new <Text style={styles.doitText}>Doit</Text></Text>
             <TextInput
-              placeholder='DoIt title'
+              placeholder='Doit title'
               autoFocus={true}
               onChangeText={text=>{this.name = text.trim().toLowerCase()}}
               onSubmitEditing={this.createDoit}

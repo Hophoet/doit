@@ -1069,6 +1069,7 @@ drawable googleg_standard_color_18
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable icon
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -2181,3 +2182,4 @@ styleable ViewBackgroundHelper android_background backgroundTint backgroundTintM
 styleable ViewStubCompat android_id android_layout android_inflatedId
 xml file_system_provider_paths
 xml rn_dev_preferences
+xml sharing_provider_paths

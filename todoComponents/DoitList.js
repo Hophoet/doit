@@ -37,10 +37,10 @@ export default class DoitList extends React.Component{
     const total_done_tasks = tasks.filter(task=>task.completed).length;
     const doitDone = total_done_tasks !== 0 && total_done_tasks === total_tasks
     //set of the colors depending of the doIt state
-    const textColor = doitDone?'#fff':"gray"
-    const iconColor = doitDone?'#fff':colors.mainColor
-    const counterColor = doitDone?'#fff':'gray'
-    const bgColor = doitDone?colors.mainColor:'#fff'
+    const textColor = doitDone?'gray':"gray"
+    const iconColor = doitDone?colors.mainColor:colors.mainColor
+    const counterColor = doitDone?'gray':'gray'
+    const bgColor = doitDone?'#fff':'#fff'
     //console.log(this.props.homeRefresh)
     //console.log(this.props.list.doits);
   return(
@@ -70,6 +70,10 @@ export default class DoitList extends React.Component{
         <View style={styles.iconContainer}>
           <Entypo name='list' size={90} color={iconColor}/>
         </View>
+
+
+      </View>
+      <View style={styles.footer}>
       </View>
 
     </TouchableOpacity>
@@ -133,10 +137,11 @@ const styles = StyleSheet.create({
     margin:5,
   },
   side:{
-    opacity:.5
+    opacity:.4
   },
   text:{
     color:'gray',
+
   },
   iconContainer:{
     justifyContent:'center',
@@ -145,6 +150,15 @@ const styles = StyleSheet.create({
   info:{
     justifyContent:'space-evenly',
     alignItems:'center',
+
+  },
+  titleContainer:{
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+    paddingHorizontal:10
+  },
+  footer:{
 
   }
 })

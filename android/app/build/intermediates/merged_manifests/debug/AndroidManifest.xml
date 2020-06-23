@@ -40,9 +40,8 @@
         android:allowBackup="false"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.doit.MainActivity"
@@ -70,6 +69,16 @@
         <service
             android:name="expo.modules.location.services.LocationTaskService"
             android:exported="false" />
+
+        <provider
+            android:name="expo.modules.sharing.SharingFileProvider"
+            android:authorities="com.doit.SharingFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/sharing_provider_paths" />
+        </provider>
 
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
