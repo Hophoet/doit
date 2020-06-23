@@ -134,7 +134,7 @@ export default class AddDoitItem extends React.Component{
 
 
                 <View style={styles.doitContainer} >
-                  <View style={[styles.titleContainer, {left:this.width/3}]}>
+                  <Animated.View style={[styles.titleContainer, {left:this.state.titlePosition}]}>
                     <View style={{flexDirection:'row', alignItems:'center'}}>
                       <View style={{marginHorizontal:10}}>
                         <Text numberOfLines={3}  style={styles.itemTitle}>{this.props.name} </Text>
@@ -149,7 +149,7 @@ export default class AddDoitItem extends React.Component{
                       <Ionicons name='ios-done-all' style={styles.doneIcon} color='white' size={40}/>
                     </TouchableOpacity>
 
-                  </View>
+                  </Animated.View>
 
                 </View>
                 <View style={styles.itemsContainer}>
