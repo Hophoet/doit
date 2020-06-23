@@ -2,6 +2,7 @@ import React from 'react'
 import {View, Text, StyleSheet, Dimensions, Animated} from 'react-native'
 import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 import colors from '../constants/Colors'
+import * as Font from 'expo-font';
 
 //Enter show screen class
 export default class Enter extends React.Component{
@@ -15,6 +16,7 @@ export default class Enter extends React.Component{
     }
 
   }
+    _loadFont = () => {}
   //Component dit mount method redefinition
   componentDidMount(){
     //set of the time to log the the App screen
@@ -45,7 +47,7 @@ export default class Enter extends React.Component{
         <View style={styles.design}/>
 
           <View style={styles.textContainer}>
-            <Text style={styles.doItText}>DoIt</Text>
+            <Text style={styles.doItText}>Doit</Text>
           </View>
 
         <Animated.View style={[styles.secondContainer, {   left:this.state.LeftText }]}>
