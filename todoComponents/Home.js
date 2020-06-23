@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {View, Text, FlatList, StyleSheet,
+import {View, Text, FlatList, StyleSheet, Image,
   Modal, TouchableOpacity, Dimensions, Animated, Button} from 'react-native'
 
 import {AntDesign, Ionicons, Entypo,} from '@expo/vector-icons'
@@ -14,6 +14,7 @@ class Home extends React.Component{
   //constructor of the Home class
   constructor(props){
     super(props);
+
 
     //this.database = require('../database/data.json').doits
     //this.doits = this.props.doits
@@ -31,7 +32,13 @@ class Home extends React.Component{
 
   }
 
-
+  _showEmptyImage = ()=> {
+    if(this.props.doits.length == 0){
+      return (
+        <Image style={styles.emptyImage} source={require('../assets/images/emptyTask.png')}/>
+      )
+    }
+  }
 
   componentDidMount(){
     //this.props.navigation.setParams({onSave:this._onAlert.bind(this), isSaving:false});
@@ -55,7 +62,7 @@ class Home extends React.Component{
   //set of the navigation title
   static navigationOptions = ({navigation}) => {
     const {params = {} } = navigation.state;
-    let headerTitle = 'DoIt ';
+    let headerTitle = 'Doit ';
     let headerTitleStyle =  { color: 'black'};
     let headerStyle = { backgroundColor:'darkviolet'};
     let headerTinColor = '';
@@ -88,7 +95,7 @@ class Home extends React.Component{
         <View style={styles.design}/>
 
         <View style={styles.textContainer}>
-
+          {this._showEmptyImage()}
         </View>
 
         <View style={styles.doitList}>
@@ -195,5 +202,9 @@ const styles = StyleSheet.create({
     fontSize:20,
     opacity:.4,
     color:'#000'
+  },
+  emptyImage:{
+    width:Dimensions.get('window').width/2,
+    height:Dimensions.get('window').width/2
   }
 })
