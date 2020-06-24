@@ -94,7 +94,7 @@ class Home extends React.Component{
 
         <View style={styles.design}/>
 
-        <View style={styles.textContainer}>
+        <View style={styles.emptyImageContainer}>
           {this._showEmptyImage()}
         </View>
 
@@ -205,6 +205,11 @@ const styles = StyleSheet.create({
   },
   emptyImage:{
     width:Dimensions.get('window').width/2,
-    height:Dimensions.get('window').width/2
+    height:Dimensions.get('window').width/1.5
+  },
+  emptyImageContainer:{
+    justifyContent:'center',
+    alignItems:'center',
+    marginRight:Dimensions.get('window').width/5
   }
 })
