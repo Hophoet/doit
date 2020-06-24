@@ -1,8 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet, Dimensions, Animated} from 'react-native'
-import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 import colors from '../constants/Colors'
-import * as Font from 'expo-font';
+
 
 //Enter show screen class
 export default class Enter extends React.Component{
@@ -16,13 +15,15 @@ export default class Enter extends React.Component{
     }
 
   }
-    _loadFont = () => {}
+
   //Component dit mount method redefinition
   componentDidMount(){
-    //set of the time to log the the App screen
+
+
+    //set of splash timer
       setTimeout(
         () => {
-          this.props.navigation.navigate('App')
+           this.props.navigation.navigate('App')
         }
      , 3000)
     Animated.spring(
@@ -45,15 +46,14 @@ export default class Enter extends React.Component{
     return(
       <View style={styles.container}>
         <View style={styles.design}/>
-
-          <View style={styles.textContainer}>
-            <Text style={styles.doItText}>Doit</Text>
+          <View style={styles.centerTextContainer}>
+            <View style={styles.textContainer}>
+              <Text style={styles.doItText}>Doit</Text>
+            </View>
+            <Animated.View style={[styles.secondContainer, {   left:this.state.LeftText }]}>
+              <Text style={styles.secondText}><Text style={styles.bmpText}>BMP</Text> Become More Productive </Text>
+            </Animated.View>
           </View>
-
-        <Animated.View style={[styles.secondContainer, {   left:this.state.LeftText }]}>
-          <Text style={styles.secondText}><Text style={styles.bmpText}>BMP</Text> Become More Productive </Text>
-        </Animated.View>
-
       </View>
     )
   }
@@ -64,7 +64,6 @@ export default class Enter extends React.Component{
 const styles  = StyleSheet.create({
   container:{
     flex:1,
-    alignItems:'center',
     justifyContent:'center'
 
   },
@@ -77,24 +76,26 @@ const styles  = StyleSheet.create({
     top:0,
     alignItems:'center',
   },
+  centerTextContainer:{
+    paddingLeft:Dimensions.get('window').width/5
+  }
+  ,
   textContainer:{
-
-    alignItems:'center',
     justifyContent:'center',
-    padding:10,
+    paddingVertical:10
 
 
   },
   doItText:{
-    fontSize:25,
+    fontSize:30,
     fontWeight:'bold',
     color:'#000'
   },
   secondText:{
-    borderRadius:10,
+
   },
   secondContainer:{
-    width:Dimensions.get('window').width/2,
+
   },
   bmpText:{
     color:'#000',
