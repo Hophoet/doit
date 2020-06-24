@@ -97,17 +97,17 @@
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp-urlconnection:3.12.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.12.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.15.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.41@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.device.yearclass:yearclass:2.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.41@jar" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10@jar" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:1.4@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.41@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.9.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.9.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.41@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.parse.bolts:bolts-tasks:1.4.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.41@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
@@ -163,16 +163,17 @@
     <orderEntry type="library" name="Gradle: io.nlopez.smartlocation:library:3.2.11@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:fbcore:2.0.0@aar" level="project" />
     <orderEntry type="module" module-name="expo-permissions" />
+    <orderEntry type="module" module-name="android-expo-error-recovery" />
     <orderEntry type="module" module-name="unimodules-core" />
     <orderEntry type="module" module-name="unimodules-react-native-adapter" />
     <orderEntry type="module" module-name="expo-app-loader-provider" />
     <orderEntry type="module" module-name="expo-constants" />
-    <orderEntry type="module" module-name="expo-error-recovery" />
     <orderEntry type="module" module-name="expo-file-system" />
     <orderEntry type="module" module-name="expo-font" />
     <orderEntry type="module" module-name="expo-keep-awake" />
     <orderEntry type="module" module-name="expo-linear-gradient" />
     <orderEntry type="module" module-name="expo-location" />
+    <orderEntry type="module" module-name="expo-sharing" />
     <orderEntry type="module" module-name="expo-sqlite" />
     <orderEntry type="module" module-name="expo-web-browser" />
     <orderEntry type="module" module-name="unimodules-barcode-scanner-interface" />

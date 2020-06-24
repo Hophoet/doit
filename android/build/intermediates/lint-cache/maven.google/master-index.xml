@@ -126,6 +126,7 @@
   <com.google.android.gms/>
   <com.google.android.instantapps/>
   <com.google.android.instantapps.thirdpartycompat/>
+  <com.google.android.libraries.maps/>
   <com.google.android.libraries.places/>
   <com.google.android.material/>
   <com.google.android.play/>

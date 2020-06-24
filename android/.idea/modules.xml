@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/.staging/expo-error-recovery-9c6136f6/android/android-expo-error-recovery.iml" filepath="$PROJECT_DIR$/../node_modules/.staging/expo-error-recovery-9c6136f6/android/android-expo-error-recovery.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/doit.iml" filepath="$PROJECT_DIR$/doit.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/expo-app-loader-provider/android/expo-app-loader-provider.iml" filepath="$PROJECT_DIR$/../node_modules/expo-app-loader-provider/android/expo-app-loader-provider.iml" />
@@ -13,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/../node_modules/expo-linear-gradient/android/expo-linear-gradient.iml" filepath="$PROJECT_DIR$/../node_modules/expo-linear-gradient/android/expo-linear-gradient.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/expo-location/android/expo-location.iml" filepath="$PROJECT_DIR$/../node_modules/expo-location/android/expo-location.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/expo-permissions/android/expo-permissions.iml" filepath="$PROJECT_DIR$/../node_modules/expo-permissions/android/expo-permissions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../node_modules/expo-sharing/android/expo-sharing.iml" filepath="$PROJECT_DIR$/../node_modules/expo-sharing/android/expo-sharing.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/expo-sqlite/android/expo-sqlite.iml" filepath="$PROJECT_DIR$/../node_modules/expo-sqlite/android/expo-sqlite.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/expo-web-browser/android/expo-web-browser.iml" filepath="$PROJECT_DIR$/../node_modules/expo-web-browser/android/expo-web-browser.iml" />
       <module fileurl="file://$PROJECT_DIR$/../node_modules/@react-native-community/async-storage/android/react-native-community_async-storage.iml" filepath="$PROJECT_DIR$/../node_modules/@react-native-community/async-storage/android/react-native-community_async-storage.iml" />

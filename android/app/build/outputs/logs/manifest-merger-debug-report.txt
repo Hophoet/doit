@@ -13,9 +13,9 @@ MERGED from [:react-native-reanimated] E:\Projects\reactnative\android\apk\doit\
 MERGED from [com.facebook.react:react-native:0.61.5] C:\Users\user\.gradle\caches\transforms-1\files-1.1\jetified-react-native-0.61.5.aar\1d6ffb94c39cf1698db706b7a400e2e9\AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\user\.gradle\caches\transforms-1\files-1.1\material-1.0.0.aar\4dda5795d22fd73bd1294d2de4e50fd7\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\user\.gradle\caches\transforms-1\files-1.1\appcompat-1.1.0.aar\3a9be14556927988c5f287d5e7cd00e7\AndroidManifest.xml:17:1-24:12
-MERGED from [:expo-error-recovery] E:\Projects\reactnative\android\apk\doit\node_modules\.staging\expo-error-recovery-9c6136f6\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:expo-app-loader-provider] E:\Projects\reactnative\android\apk\doit\node_modules\expo-app-loader-provider\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:expo-constants] E:\Projects\reactnative\android\apk\doit\node_modules\expo-constants\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-error-recovery] E:\Projects\reactnative\android\apk\doit\node_modules\expo-error-recovery\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:expo-file-system] E:\Projects\reactnative\android\apk\doit\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-30:12
 MERGED from [:expo-font] E:\Projects\reactnative\android\apk\doit\node_modules\expo-font\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:expo-keep-awake] E:\Projects\reactnative\android\apk\doit\node_modules\expo-keep-awake\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
@@ -282,12 +282,12 @@ MERGED from [com.google.android.material:material:1.0.0] C:\Users\user\.gradle\c
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\user\.gradle\caches\transforms-1\files-1.1\material-1.0.0.aar\4dda5795d22fd73bd1294d2de4e50fd7\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\user\.gradle\caches\transforms-1\files-1.1\appcompat-1.1.0.aar\3a9be14556927988c5f287d5e7cd00e7\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\user\.gradle\caches\transforms-1\files-1.1\appcompat-1.1.0.aar\3a9be14556927988c5f287d5e7cd00e7\AndroidManifest.xml:20:5-22:41
-MERGED from [:expo-error-recovery] E:\Projects\reactnative\android\apk\doit\node_modules\.staging\expo-error-recovery-9c6136f6\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
-MERGED from [:expo-error-recovery] E:\Projects\reactnative\android\apk\doit\node_modules\.staging\expo-error-recovery-9c6136f6\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:expo-app-loader-provider] E:\Projects\reactnative\android\apk\doit\node_modules\expo-app-loader-provider\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:expo-app-loader-provider] E:\Projects\reactnative\android\apk\doit\node_modules\expo-app-loader-provider\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:expo-constants] E:\Projects\reactnative\android\apk\doit\node_modules\expo-constants\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:expo-constants] E:\Projects\reactnative\android\apk\doit\node_modules\expo-constants\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-error-recovery] E:\Projects\reactnative\android\apk\doit\node_modules\expo-error-recovery\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:expo-error-recovery] E:\Projects\reactnative\android\apk\doit\node_modules\expo-error-recovery\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:expo-file-system] E:\Projects\reactnative\android\apk\doit\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-10:41
 MERGED from [:expo-file-system] E:\Projects\reactnative\android\apk\doit\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-10:41
 MERGED from [:expo-font] E:\Projects\reactnative\android\apk\doit\node_modules\expo-font\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
