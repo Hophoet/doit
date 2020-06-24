@@ -76,7 +76,9 @@ export default class AddDoitList extends React.Component{
             <AntDesign name='close' color='white' size={30}/>
           </TouchableOpacity>
           <View style={styles.form}>
-            <Text style={styles.title}>Create new <Text style={styles.doitText}>Doit</Text></Text>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>Create new <Text style={styles.doitText}>Doit</Text></Text>
+            </View>
             <TextInput
               placeholder='Doit title'
               autoFocus={true}
@@ -112,10 +114,17 @@ const styles = StyleSheet.create({
   form:{
     flex:1,
   },
+  titleContainer:{
+    alignItems:'center',
+    justifyContent:'center',
+    marginRight:Dimensions.get('window').width/5
+  }
+  ,
   title:{
     fontSize:30,
     alignSelf:'center',
-    color:'gray'
+    color:'gray',
+
   },
   doitText:{
     color:colors.mainColor,
