@@ -70,6 +70,7 @@ export default class AddDoitItem extends React.Component{
         //execuction of the action with the dispatch method
         this.props.dispatch(action)
         //set of the error message to empty
+
       }
       //error condition
       else{
@@ -101,12 +102,13 @@ export default class AddDoitItem extends React.Component{
     if( all_task_count === all_done_task_count){
       //close of the modal and the delete of the doIt
       this.props.closeItem()
+      Toast._show_center_toast("Doit deleted")
       let action = {type:'DELETE_DOIT', value:{doitName:name}}
       this.props.dispatch(action)
     }
     else{
 
-      Toast._show_center_toast("Tasks not finished")
+      Toast._show_center_toast("Doit not finished")
 
 
     }
@@ -146,7 +148,7 @@ export default class AddDoitItem extends React.Component{
                       style={styles.doneIconContainer}
                       onPress={()=> {this._deleteDoit(this.props.name)}}
                           >
-                      <Ionicons name='ios-done-all' style={styles.doneIcon} color='white' size={40}/>
+                      <Entypo name='trash' style={styles.doneIcon} color='white' size={40}/>
                     </TouchableOpacity>
 
                   </Animated.View>
@@ -266,19 +268,15 @@ const styles = StyleSheet.create({
 
   },
   doneIconContainer:{
-    justifyContent:'center',
-    alignItems:'center',
     borderRadius:60,
     padding:10,
-    width:60,
-    height:60,
     backgroundColor:colors.mainColor,
     alignSelf:'flex-end',
-    elevation:20,
+    elevation:10,
     borderWidth:2,
     borderColor:'white',
     bottom:-20,
-    marginRight:10
+    marginRight:10,
   },
   doneIcon:{
 
