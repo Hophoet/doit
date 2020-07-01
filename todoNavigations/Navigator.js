@@ -16,6 +16,7 @@ const AppStack = createStackNavigator({
   }
 })
 
+
 export default createAppContainer(
   createSwitchNavigator({
     App: AppStack,

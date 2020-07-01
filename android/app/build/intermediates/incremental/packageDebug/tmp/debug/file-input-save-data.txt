@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jun 23 23:34:01 UTC 2020
+#Wed Jul 01 04:25:05 UTC 2020
 60.set=NATIVE_RESOURCE
 52.set=NATIVE_RESOURCE
 53.base=E\:\\Projects\\reactnative\\android\\apk\\doit\\android\\app\\build\\intermediates\\transforms\\mergeJniLibs\\debug\\0

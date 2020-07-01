@@ -23,7 +23,7 @@ export default class Enter extends React.Component{
     //set of splash timer
       setTimeout(
         () => {
-           this.props.navigation.navigate('App')
+           // this.props.navigation.navigate('App')
         }
      , 3000)
     Animated.spring(
@@ -34,7 +34,7 @@ export default class Enter extends React.Component{
         bounciness:5
       }
     ).start(()=>{
-      // this.props.navigation.navigate('App')
+      this.props.navigation.navigate('App')
     })
 
 
@@ -82,8 +82,6 @@ const styles  = StyleSheet.create({
   ,
   textContainer:{
     justifyContent:'center',
-    paddingVertical:10
-
 
   },
   doItText:{

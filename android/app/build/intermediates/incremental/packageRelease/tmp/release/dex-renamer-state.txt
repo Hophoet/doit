@@ -1,4 +1,0 @@
-#Wed Jun 24 01:14:52 UTC 2020
-base.0=E\:\\Projects\\reactnative\\android\\apk\\doit\\android\\app\\build\\intermediates\\transforms\\dexMerger\\release\\0
-path.0=classes.dex
-renamed.0=classes.dex

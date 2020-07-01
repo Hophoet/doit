@@ -102,9 +102,9 @@ export default class AddDoitItem extends React.Component{
     if( all_task_count === all_done_task_count){
       //close of the modal and the delete of the doIt
       this.props.closeItem()
-      Toast._show_center_toast("Doit deleted")
       let action = {type:'DELETE_DOIT', value:{doitName:name}}
       this.props.dispatch(action)
+      Toast._show_center_toast("Doit deleted")
     }
     else{
 

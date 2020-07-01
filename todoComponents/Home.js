@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   doitsCounter:{
     fontSize:20,
     opacity:.4,
-    color:'#000'
+    color:'gray'
   },
   emptyImage:{
     width:Dimensions.get('window').width/2,

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
-INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
-INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
-INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
+ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
+INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
+INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
+INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
 MERGED from [:expo-permissions] E:\Projects\reactnative\android\apk\doit\node_modules\expo-permissions\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-screens] E:\Projects\reactnative\android\apk\doit\node_modules\react-native-screens\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:unimodules-react-native-adapter] E:\Projects\reactnative\android\apk\doit\node_modules\@unimodules\react-native-adapter\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-11:12
@@ -87,20 +87,20 @@ MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] C:\Users\user\.gradle
 MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\user\.gradle\caches\transforms-1\files-1.1\soloader-0.6.0.aar\bd413ac14b044db519968b8a5cbece2d\AndroidManifest.xml:2:1-13:12
 MERGED from [io.nlopez.smartlocation:library:3.2.11] C:\Users\user\.gradle\caches\transforms-1\files-1.1\jetified-library-3.2.11.aar\553c59377ff153cf2b1c2ede6379431e\AndroidManifest.xml:2:1-30:12
 MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\user\.gradle\caches\transforms-1\files-1.1\jetified-fbcore-2.0.0.aar\4c5af522e1b174c267a14712b63b9e67\AndroidManifest.xml:2:1-9:12
-INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
-INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
-INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
+INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
+INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
+INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
 	package
 		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:2:5-23
 		INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml
 		INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml
-		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
+		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
 		INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml
-		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-47:12
+		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:1-48:12
 		INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:1:11-69
@@ -191,7 +191,7 @@ ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\Android
 	android:name
 		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:25:22-70
 application
-ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:28:5-45:19
+ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:28:5-46:19
 MERGED from [com.facebook.react:react-native:0.61.5] C:\Users\user\.gradle\caches\transforms-1\files-1.1\jetified-react-native-0.61.5.aar\1d6ffb94c39cf1698db706b7a400e2e9\AndroidManifest.xml:11:5-20
 MERGED from [com.facebook.react:react-native:0.61.5] C:\Users\user\.gradle\caches\transforms-1\files-1.1\jetified-react-native-0.61.5.aar\1d6ffb94c39cf1698db706b7a400e2e9\AndroidManifest.xml:11:5-20
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\user\.gradle\caches\transforms-1\files-1.1\material-1.0.0.aar\4dda5795d22fd73bd1294d2de4e50fd7\AndroidManifest.xml:22:5-20
@@ -237,29 +237,31 @@ MERGED from [io.nlopez.smartlocation:library:3.2.11] C:\Users\user\.gradle\cache
 	android:name
 		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:29:7-38
 activity#com.doit.MainActivity
-ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:34:7-43:18
+ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:34:7-44:18
+	android:screenOrientation
+		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:37:9-45
 	android:label
 		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:36:9-41
 	android:windowSoftInputMode
-		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:38:9-51
+		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:39:9-51
 	android:configChanges
-		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:37:9-79
+		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:38:9-79
 	android:name
 		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:35:9-37
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:39:9-42:25
+ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:40:9-43:25
 action#android.intent.action.MAIN
-ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:40:13-65
+ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:41:13-65
 	android:name
-		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:40:21-62
+		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:41:21-62
 category#android.intent.category.LAUNCHER
-ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:41:13-73
+ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:42:13-73
 	android:name
-		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:41:23-70
+		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:42:23-70
 activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:44:7-84
+ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:45:7-84
 	android:name
-		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:44:17-81
+		ADDED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml:45:17-81
 uses-sdk
 INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\Projects\reactnative\android\apk\doit\android\app\src\main\AndroidManifest.xml
