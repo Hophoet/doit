@@ -48,6 +48,7 @@ export default class DoitList extends React.Component{
     <TouchableOpacity style={[styles.container, {backgroundColor:bgColor}]} onPress={() => {this.closeItem()}} activeOpacity={0.7}>
       <Modal
         styleType='slide'
+        onRequestClose={this.closeItem}
         visible={this.state.addDoitItemVisible}
         >
         <AddDoitItem dispatch={this.props.dispatch} doits={this.props.doits} name={doit.name} tasks={doit.tasks} closeItem = {() => this.closeItem()}/>
