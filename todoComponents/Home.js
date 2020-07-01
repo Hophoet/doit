@@ -85,6 +85,7 @@ class Home extends React.Component{
       <View style={styles.container}>
         <Modal
           animationType='slide'
+          onRequestClose={this.closeList}
           animated={true}
           visible={this.state.addDoitListVisible}
           >
