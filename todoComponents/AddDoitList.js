@@ -91,7 +91,7 @@ export default class AddDoitList extends React.Component{
               activeOpacity={.6}
               >
               <Text style={styles.buttonText}>Create</Text>
-              <Entypo name='list' color='#fff' size={25}/>
+             
             </TouchableOpacity>
           </View>
 
@@ -152,7 +152,8 @@ const styles = StyleSheet.create({
     alignSelf:'center',
     borderRadius:4,
     elevation:10,
-    flexDirection:'row'
+    flexDirection:'row',
+    marginRight:Dimensions.get('window').width/5
 
 
   },

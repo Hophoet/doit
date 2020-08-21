@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Projects\\reactnative\\android\\apk\\doit\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
+            "outputFile": "/home/hophoet/Projects/reactnative/android/doit/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0.aar\\3a9be14556927988c5f287d5e7cd00e7\\res\\values-v23\\values-v23.xml",
+                    "source": "/home/hophoet/.gradle/caches/transforms-1/files-1.1/appcompat-1.1.0.aar/fee3af2978e2d34916953d44deee99a6/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,37,41,42,43,44",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -15,7 +15,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-1\\files-1.1\\cardview-1.0.0.aar\\b52bfdb2bffb9d962da91f00a1e979e1\\res\\values-v23\\values-v23.xml",
+                    "source": "/home/hophoet/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/888d3130e6d85832614fe0c78cbcaa3b/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

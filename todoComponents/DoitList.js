@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, Text, TouchableOpacity, Modal, Dimensions} from 'react-native'
+import {View, StyleSheet, Text, TouchableOpacity, Modal, Dimensions, Image} from 'react-native'
 import {AntDesign, Ionicons, Entypo} from '@expo/vector-icons'
 import AddDoitItem from './AddDoitItem'
 //get of the doit data
@@ -70,6 +70,7 @@ export default class DoitList extends React.Component{
         </View>
         <View style={styles.iconContainer}>
           <Entypo name='list' size={90} color={iconColor}/>
+
         </View>
 
 
@@ -161,5 +162,10 @@ const styles = StyleSheet.create({
   },
   footer:{
 
+  },
+  image:{
+    width:100,
+    height:100
   }
+ 
 })

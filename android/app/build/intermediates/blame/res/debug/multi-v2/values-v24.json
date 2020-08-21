@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Projects\\reactnative\\android\\apk\\doit\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "/home/hophoet/Projects/reactnative/android/doit/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0.aar\\3a9be14556927988c5f287d5e7cd00e7\\res\\values-v24\\values-v24.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,212",
-                        "endColumns": "156,134",
-                        "endOffsets": "207,342"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-1\\files-1.1\\media-1.0.0.aar\\c4b7d103ae89b087fb4cf38a012d6059\\res\\values-v24\\values-v24.xml",
+                    "source": "/home/hophoet/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/e9a031143de00351b0d7c5b5be919a48/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -28,6 +18,16 @@
                         "startOffsets": "347,413,474,540",
                         "endColumns": "65,60,65,66",
                         "endOffsets": "408,469,535,602"
+                    }
+                },
+                {
+                    "source": "/home/hophoet/.gradle/caches/transforms-1/files-1.1/appcompat-1.1.0.aar/fee3af2978e2d34916953d44deee99a6/res/values-v24/values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
                     }
                 }
             ]

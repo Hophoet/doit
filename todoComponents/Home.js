@@ -35,7 +35,10 @@ class Home extends React.Component{
   _showEmptyImage = ()=> {
     if(this.props.doits.length == 0){
       return (
-        <Image style={styles.emptyImage} source={require('../assets/images/emptyTask.png')}/>
+        <View style={styles.emptyCaseContainer}> 
+          <Image  style={styles.emptyImage} source={require('../assets/images/preview.png')}/>
+          <Text>No Doit </Text>
+        </View>
       )
     }
   }
@@ -70,8 +73,9 @@ class Home extends React.Component{
 
     let headerRight = (
 
-      <Button title='alert' onPress={()=>{params.onSave()}} color='darkviolet' />);
-    return { headerTitle, headerTitleStyle}
+      <Image  style={styles.headerIcon} source={require('../assets/icon.png')}/>
+    )
+      return { headerTitle, headerTitleStyle, headerRight}
   }
 
 
@@ -205,12 +209,16 @@ const styles = StyleSheet.create({
     color:'gray'
   },
   emptyImage:{
-    width:Dimensions.get('window').width/2,
-    height:Dimensions.get('window').width/1.5
+    width:Dimensions.get('window').width/3,
+    height:Dimensions.get('window').width/3
   },
-  emptyImageContainer:{
+  emptyCaseContainer:{
     justifyContent:'center',
     alignItems:'center',
     marginRight:Dimensions.get('window').width/5
+  },
+  headerIcon:{
+    width:50,
+    height:50
   }
 })

@@ -10,7 +10,7 @@ import Enter from '../todoComponents/Enter'
 
 
 //app stack navigator
-const AppStack = createStackNavigator({
+const AppStack = createSwitchNavigator({
   Home:{
     screen:Home
   }

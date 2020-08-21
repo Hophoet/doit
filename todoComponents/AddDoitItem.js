@@ -104,11 +104,11 @@ export default class AddDoitItem extends React.Component{
       this.props.closeItem()
       let action = {type:'DELETE_DOIT', value:{doitName:name}}
       this.props.dispatch(action)
-      Toast._show_center_toast("Doit deleted")
+      Toast._show_bottom_toast("Doit deleted")
     }
     else{
 
-      Toast._show_center_toast("Doit not finished")
+      Toast._show_center_toast("Doit not done")
 
 
     }
@@ -148,7 +148,7 @@ export default class AddDoitItem extends React.Component{
                       style={styles.doneIconContainer}
                       onPress={()=> {this._deleteDoit(this.props.name)}}
                           >
-                      <Entypo name='trash' style={styles.doneIcon} color='white' size={40}/>
+                      <Entypo name='trash' style={styles.doneIcon} color='white' size={35}/>
                     </TouchableOpacity>
 
                   </Animated.View>

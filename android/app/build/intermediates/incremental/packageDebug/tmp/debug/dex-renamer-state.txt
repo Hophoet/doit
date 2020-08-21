@@ -1,7 +1,7 @@
-#Wed Jul 01 04:24:59 UTC 2020
-base.0=E\:\\Projects\\reactnative\\android\\apk\\doit\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
+#Fri Aug 21 18:02:18 GMT 2020
+base.1=/home/hophoet/Projects/reactnative/android/doit/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.1=classes.dex
+base.0=/home/hophoet/Projects/reactnative/android/doit/android/app/build/intermediates/transforms/dexMerger/debug/1
 renamed.1=classes2.dex
-path.0=classes.dex
 renamed.0=classes.dex
-base.1=E\:\\Projects\\reactnative\\android\\apk\\doit\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex

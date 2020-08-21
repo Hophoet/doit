@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet, Dimensions, Animated} from 'react-native'
+import {View, Text, StyleSheet, Dimensions, Image, Animated} from 'react-native'
 import colors from '../constants/Colors'
 
 
@@ -34,7 +34,7 @@ export default class Enter extends React.Component{
         bounciness:5
       }
     ).start(()=>{
-      this.props.navigation.navigate('App')
+     this.props.navigation.navigate('App')
     })
 
 
@@ -45,13 +45,14 @@ export default class Enter extends React.Component{
 
     return(
       <View style={styles.container}>
-        <View style={styles.design}/>
+       
           <View style={styles.centerTextContainer}>
             <View style={styles.textContainer}>
-              <Text style={styles.doItText}>Doit</Text>
+              <Image style={styles.icon} source={require('../assets/icon.png')}/>
+             
             </View>
             <Animated.View style={[styles.secondContainer, {   left:this.state.LeftText }]}>
-              <Text style={styles.secondText}><Text style={styles.bmpText}>BMP</Text> Become More Productive </Text>
+              <Text style={styles.secondText}>Become More Productive </Text>
             </Animated.View>
           </View>
       </View>
@@ -67,17 +68,9 @@ const styles  = StyleSheet.create({
     justifyContent:'center'
 
   },
-  design:{
-    backgroundColor:colors.mainColor,
-    height:Dimensions.get('window').height,
-    width:Dimensions.get('window').width/5,
-    position:'absolute',
-    right:0,
-    top:0,
-    alignItems:'center',
-  },
   centerTextContainer:{
-    paddingLeft:Dimensions.get('window').width/5
+    justifyContent:'center',
+    alignItems:'center'
   }
   ,
   textContainer:{
@@ -98,5 +91,9 @@ const styles  = StyleSheet.create({
   bmpText:{
     color:'#000',
     fontWeight:'bold'
+  },
+  icon:{
+    width:Dimensions.get('window').width/3,
+    height:Dimensions.get('window').width/3
   }
 })
